@@ -3,10 +3,10 @@
 
 package com.jclarity.had_one_dismissal.web;
 
+import com.jclarity.had_one_dismissal.domain.Applicant;
 import com.jclarity.had_one_dismissal.domain.Company;
 import com.jclarity.had_one_dismissal.domain.JobListing;
 import com.jclarity.had_one_dismissal.domain.Location;
-import com.jclarity.had_one_dismissal.domain.Seeker;
 import com.jclarity.had_one_dismissal.domain.Tag;
 import com.jclarity.had_one_dismissal.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -16,6 +16,30 @@ import org.springframework.format.FormatterRegistry;
 privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService {
     
     declare @type: ApplicationConversionServiceFactoryBean: @Configurable;
+    
+    public Converter<Applicant, String> ApplicationConversionServiceFactoryBean.getApplicantToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.jclarity.had_one_dismissal.domain.Applicant, java.lang.String>() {
+            public String convert(Applicant applicant) {
+                return new StringBuilder().append(applicant.getFirstName()).append(' ').append(applicant.getSurName()).append(' ').append(applicant.getYearsExperience()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Applicant> ApplicationConversionServiceFactoryBean.getIdToApplicantConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.jclarity.had_one_dismissal.domain.Applicant>() {
+            public com.jclarity.had_one_dismissal.domain.Applicant convert(java.lang.Long id) {
+                return Applicant.findApplicant(id);
+            }
+        };
+    }
+    
+    public Converter<String, Applicant> ApplicationConversionServiceFactoryBean.getStringToApplicantConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.jclarity.had_one_dismissal.domain.Applicant>() {
+            public com.jclarity.had_one_dismissal.domain.Applicant convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Applicant.class);
+            }
+        };
+    }
     
     public Converter<Company, String> ApplicationConversionServiceFactoryBean.getCompanyToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.jclarity.had_one_dismissal.domain.Company, java.lang.String>() {
@@ -44,7 +68,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<JobListing, String> ApplicationConversionServiceFactoryBean.getJobListingToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.jclarity.had_one_dismissal.domain.JobListing, java.lang.String>() {
             public String convert(JobListing jobListing) {
-                return new StringBuilder().append(jobListing.getTitle()).append(' ').append(jobListing.getDescription()).append(' ').append(jobListing.getSalary()).append(' ').append(jobListing.getSalaryLowerBound()).toString();
+                return new StringBuilder().append(jobListing.getTitle()).append(' ').append(jobListing.getDescription()).append(' ').append(jobListing.getSalaryLowerBound()).append(' ').append(jobListing.getSalaryUpperBound()).toString();
             }
         };
     }
@@ -89,30 +113,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<Seeker, String> ApplicationConversionServiceFactoryBean.getSeekerToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<com.jclarity.had_one_dismissal.domain.Seeker, java.lang.String>() {
-            public String convert(Seeker seeker) {
-                return new StringBuilder().append(seeker.getFirstName()).append(' ').append(seeker.getSurName()).append(' ').append(seeker.getYearsExperience()).toString();
-            }
-        };
-    }
-    
-    public Converter<Long, Seeker> ApplicationConversionServiceFactoryBean.getIdToSeekerConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Long, com.jclarity.had_one_dismissal.domain.Seeker>() {
-            public com.jclarity.had_one_dismissal.domain.Seeker convert(java.lang.Long id) {
-                return Seeker.findSeeker(id);
-            }
-        };
-    }
-    
-    public Converter<String, Seeker> ApplicationConversionServiceFactoryBean.getStringToSeekerConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, com.jclarity.had_one_dismissal.domain.Seeker>() {
-            public com.jclarity.had_one_dismissal.domain.Seeker convert(String id) {
-                return getObject().convert(getObject().convert(id, Long.class), Seeker.class);
-            }
-        };
-    }
-    
     public Converter<Tag, String> ApplicationConversionServiceFactoryBean.getTagToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.jclarity.had_one_dismissal.domain.Tag, java.lang.String>() {
             public String convert(Tag tag) {
@@ -138,6 +138,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     }
     
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
+        registry.addConverter(getApplicantToStringConverter());
+        registry.addConverter(getIdToApplicantConverter());
+        registry.addConverter(getStringToApplicantConverter());
         registry.addConverter(getCompanyToStringConverter());
         registry.addConverter(getIdToCompanyConverter());
         registry.addConverter(getStringToCompanyConverter());
@@ -147,9 +150,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getLocationToStringConverter());
         registry.addConverter(getIdToLocationConverter());
         registry.addConverter(getStringToLocationConverter());
-        registry.addConverter(getSeekerToStringConverter());
-        registry.addConverter(getIdToSeekerConverter());
-        registry.addConverter(getStringToSeekerConverter());
         registry.addConverter(getTagToStringConverter());
         registry.addConverter(getIdToTagConverter());
         registry.addConverter(getStringToTagConverter());

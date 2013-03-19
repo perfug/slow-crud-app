@@ -3,13 +3,13 @@
 
 package com.jclarity.had_one_dismissal.domain;
 
-import com.jclarity.had_one_dismissal.domain.Seeker;
+import com.jclarity.had_one_dismissal.domain.Applicant;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-privileged aspect Seeker_Roo_ToString {
+privileged aspect Applicant_Roo_ToString {
     
-    public String Seeker.toString() {
+    public String Applicant.toString() {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
     

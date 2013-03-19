@@ -34,7 +34,6 @@ privileged aspect JobListingDataOnDemand_Roo_DataOnDemand {
         JobListing obj = new JobListing();
         setDescription(obj, index);
         setPostedAt(obj, index);
-        setSalary(obj, index);
         setSalaryLowerBound(obj, index);
         setSalaryUpperBound(obj, index);
         setTitle(obj, index);
@@ -49,11 +48,6 @@ privileged aspect JobListingDataOnDemand_Roo_DataOnDemand {
     public void JobListingDataOnDemand.setPostedAt(JobListing obj, int index) {
         Date postedAt = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
         obj.setPostedAt(postedAt);
-    }
-    
-    public void JobListingDataOnDemand.setSalary(JobListing obj, int index) {
-        String salary = "salaryxx_" + index;
-        obj.setSalary(salary);
     }
     
     public void JobListingDataOnDemand.setSalaryLowerBound(JobListing obj, int index) {

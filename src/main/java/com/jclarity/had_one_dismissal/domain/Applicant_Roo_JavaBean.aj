@@ -3,31 +3,31 @@
 
 package com.jclarity.had_one_dismissal.domain;
 
-import com.jclarity.had_one_dismissal.domain.Seeker;
+import com.jclarity.had_one_dismissal.domain.Applicant;
 
-privileged aspect Seeker_Roo_JavaBean {
+privileged aspect Applicant_Roo_JavaBean {
     
-    public String Seeker.getFirstName() {
+    public String Applicant.getFirstName() {
         return this.firstName;
     }
     
-    public void Seeker.setFirstName(String firstName) {
+    public void Applicant.setFirstName(String firstName) {
         this.firstName = firstName;
     }
     
-    public String Seeker.getSurName() {
+    public String Applicant.getSurName() {
         return this.surName;
     }
     
-    public void Seeker.setSurName(String surName) {
+    public void Applicant.setSurName(String surName) {
         this.surName = surName;
     }
     
-    public int Seeker.getYearsExperience() {
+    public int Applicant.getYearsExperience() {
         return this.yearsExperience;
     }
     
-    public void Seeker.setYearsExperience(int yearsExperience) {
+    public void Applicant.setYearsExperience(int yearsExperience) {
         this.yearsExperience = yearsExperience;
     }
     

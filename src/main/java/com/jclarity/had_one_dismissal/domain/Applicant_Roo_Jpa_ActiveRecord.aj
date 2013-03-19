@@ -3,73 +3,73 @@
 
 package com.jclarity.had_one_dismissal.domain;
 
-import com.jclarity.had_one_dismissal.domain.Seeker;
+import com.jclarity.had_one_dismissal.domain.Applicant;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
-privileged aspect Seeker_Roo_Jpa_ActiveRecord {
+privileged aspect Applicant_Roo_Jpa_ActiveRecord {
     
     @PersistenceContext
-    transient EntityManager Seeker.entityManager;
+    transient EntityManager Applicant.entityManager;
     
-    public static final EntityManager Seeker.entityManager() {
-        EntityManager em = new Seeker().entityManager;
+    public static final EntityManager Applicant.entityManager() {
+        EntityManager em = new Applicant().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
         return em;
     }
     
-    public static long Seeker.countSeekers() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Seeker o", Long.class).getSingleResult();
+    public static long Applicant.countApplicants() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM Applicant o", Long.class).getSingleResult();
     }
     
-    public static List<Seeker> Seeker.findAllSeekers() {
-        return entityManager().createQuery("SELECT o FROM Seeker o", Seeker.class).getResultList();
+    public static List<Applicant> Applicant.findAllApplicants() {
+        return entityManager().createQuery("SELECT o FROM Applicant o", Applicant.class).getResultList();
     }
     
-    public static Seeker Seeker.findSeeker(Long id) {
+    public static Applicant Applicant.findApplicant(Long id) {
         if (id == null) return null;
-        return entityManager().find(Seeker.class, id);
+        return entityManager().find(Applicant.class, id);
     }
     
-    public static List<Seeker> Seeker.findSeekerEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Seeker o", Seeker.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<Applicant> Applicant.findApplicantEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM Applicant o", Applicant.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional
-    public void Seeker.persist() {
+    public void Applicant.persist() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.persist(this);
     }
     
     @Transactional
-    public void Seeker.remove() {
+    public void Applicant.remove() {
         if (this.entityManager == null) this.entityManager = entityManager();
         if (this.entityManager.contains(this)) {
             this.entityManager.remove(this);
         } else {
-            Seeker attached = Seeker.findSeeker(this.id);
+            Applicant attached = Applicant.findApplicant(this.id);
             this.entityManager.remove(attached);
         }
     }
     
     @Transactional
-    public void Seeker.flush() {
+    public void Applicant.flush() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.flush();
     }
     
     @Transactional
-    public void Seeker.clear() {
+    public void Applicant.clear() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.clear();
     }
     
     @Transactional
-    public Seeker Seeker.merge() {
+    public Applicant Applicant.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
-        Seeker merged = this.entityManager.merge(this);
+        Applicant merged = this.entityManager.merge(this);
         this.entityManager.flush();
         return merged;
     }

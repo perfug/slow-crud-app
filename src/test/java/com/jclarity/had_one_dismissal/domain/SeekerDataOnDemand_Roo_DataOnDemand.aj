@@ -3,7 +3,7 @@
 
 package com.jclarity.had_one_dismissal.domain;
 
-import com.jclarity.had_one_dismissal.domain.Seeker;
+import com.jclarity.had_one_dismissal.domain.Applicant;
 import com.jclarity.had_one_dismissal.domain.SeekerDataOnDemand;
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -20,32 +20,32 @@ privileged aspect SeekerDataOnDemand_Roo_DataOnDemand {
     
     private Random SeekerDataOnDemand.rnd = new SecureRandom();
     
-    private List<Seeker> SeekerDataOnDemand.data;
+    private List<Applicant> SeekerDataOnDemand.data;
     
-    public Seeker SeekerDataOnDemand.getNewTransientSeeker(int index) {
-        Seeker obj = new Seeker();
+    public Applicant SeekerDataOnDemand.getNewTransientApplicant(int index) {
+        Applicant obj = new Applicant();
         setFirstName(obj, index);
         setSurName(obj, index);
         setYearsExperience(obj, index);
         return obj;
     }
     
-    public void SeekerDataOnDemand.setFirstName(Seeker obj, int index) {
+    public void SeekerDataOnDemand.setFirstName(Applicant obj, int index) {
         String firstName = "firstName_" + index;
         obj.setFirstName(firstName);
     }
     
-    public void SeekerDataOnDemand.setSurName(Seeker obj, int index) {
+    public void SeekerDataOnDemand.setSurName(Applicant obj, int index) {
         String surName = "surNamex_" + index;
         obj.setSurName(surName);
     }
     
-    public void SeekerDataOnDemand.setYearsExperience(Seeker obj, int index) {
+    public void SeekerDataOnDemand.setYearsExperience(Applicant obj, int index) {
         int yearsExperience = index;
         obj.setYearsExperience(yearsExperience);
     }
     
-    public Seeker SeekerDataOnDemand.getSpecificSeeker(int index) {
+    public Applicant SeekerDataOnDemand.getSpecificApplicant(int index) {
         init();
         if (index < 0) {
             index = 0;
@@ -53,36 +53,36 @@ privileged aspect SeekerDataOnDemand_Roo_DataOnDemand {
         if (index > (data.size() - 1)) {
             index = data.size() - 1;
         }
-        Seeker obj = data.get(index);
+        Applicant obj = data.get(index);
         Long id = obj.getId();
-        return Seeker.findSeeker(id);
+        return Applicant.findApplicant(id);
     }
     
-    public Seeker SeekerDataOnDemand.getRandomSeeker() {
+    public Applicant SeekerDataOnDemand.getRandomApplicant() {
         init();
-        Seeker obj = data.get(rnd.nextInt(data.size()));
+        Applicant obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return Seeker.findSeeker(id);
+        return Applicant.findApplicant(id);
     }
     
-    public boolean SeekerDataOnDemand.modifySeeker(Seeker obj) {
+    public boolean SeekerDataOnDemand.modifyApplicant(Applicant obj) {
         return false;
     }
     
     public void SeekerDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = Seeker.findSeekerEntries(from, to);
+        data = Applicant.findApplicantEntries(from, to);
         if (data == null) {
-            throw new IllegalStateException("Find entries implementation for 'Seeker' illegally returned null");
+            throw new IllegalStateException("Find entries implementation for 'Applicant' illegally returned null");
         }
         if (!data.isEmpty()) {
             return;
         }
         
-        data = new ArrayList<Seeker>();
+        data = new ArrayList<Applicant>();
         for (int i = 0; i < 10; i++) {
-            Seeker obj = getNewTransientSeeker(i);
+            Applicant obj = getNewTransientApplicant(i);
             try {
                 obj.persist();
             } catch (ConstraintViolationException e) {

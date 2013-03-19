@@ -5,7 +5,6 @@ package com.jclarity.had_one_dismissal.web;
 
 import com.jclarity.had_one_dismissal.domain.Company;
 import com.jclarity.had_one_dismissal.domain.JobListing;
-import com.jclarity.had_one_dismissal.domain.Tag;
 import com.jclarity.had_one_dismissal.web.JobListingController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -98,7 +97,6 @@ privileged aspect JobListingController_Roo_Controller {
         uiModel.addAttribute("jobListing", jobListing);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("companys", Company.findAllCompanys());
-        uiModel.addAttribute("tags", Tag.findAllTags());
     }
     
     String JobListingController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

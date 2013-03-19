@@ -27,14 +27,6 @@ privileged aspect JobListing_Roo_JavaBean {
         this.description = description;
     }
     
-    public String JobListing.getSalary() {
-        return this.salary;
-    }
-    
-    public void JobListing.setSalary(String salary) {
-        this.salary = salary;
-    }
-    
     public int JobListing.getSalaryLowerBound() {
         return this.salaryLowerBound;
     }
@@ -61,10 +53,6 @@ privileged aspect JobListing_Roo_JavaBean {
     
     public Set<Tag> JobListing.getTags() {
         return this.tags;
-    }
-    
-    public void JobListing.setTags(Set<Tag> tags) {
-        this.tags = tags;
     }
     
     public Date JobListing.getPostedAt() {

@@ -3,7 +3,7 @@
 
 package com.jclarity.had_one_dismissal.domain;
 
-import com.jclarity.had_one_dismissal.domain.Seeker;
+import com.jclarity.had_one_dismissal.domain.Applicant;
 import com.jclarity.had_one_dismissal.domain.SeekerDataOnDemand;
 import com.jclarity.had_one_dismissal.domain.SeekerIntegrationTest;
 import java.util.List;
@@ -27,95 +27,95 @@ privileged aspect SeekerIntegrationTest_Roo_IntegrationTest {
     SeekerDataOnDemand SeekerIntegrationTest.dod;
     
     @Test
-    public void SeekerIntegrationTest.testCountSeekers() {
-        Assert.assertNotNull("Data on demand for 'Seeker' failed to initialize correctly", dod.getRandomSeeker());
-        long count = Seeker.countSeekers();
-        Assert.assertTrue("Counter for 'Seeker' incorrectly reported there were no entries", count > 0);
+    public void SeekerIntegrationTest.testCountApplicants() {
+        Assert.assertNotNull("Data on demand for 'Applicant' failed to initialize correctly", dod.getRandomApplicant());
+        long count = Applicant.countApplicants();
+        Assert.assertTrue("Counter for 'Applicant' incorrectly reported there were no entries", count > 0);
     }
     
     @Test
-    public void SeekerIntegrationTest.testFindSeeker() {
-        Seeker obj = dod.getRandomSeeker();
-        Assert.assertNotNull("Data on demand for 'Seeker' failed to initialize correctly", obj);
+    public void SeekerIntegrationTest.testFindApplicant() {
+        Applicant obj = dod.getRandomApplicant();
+        Assert.assertNotNull("Data on demand for 'Applicant' failed to initialize correctly", obj);
         Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'Seeker' failed to provide an identifier", id);
-        obj = Seeker.findSeeker(id);
-        Assert.assertNotNull("Find method for 'Seeker' illegally returned null for id '" + id + "'", obj);
-        Assert.assertEquals("Find method for 'Seeker' returned the incorrect identifier", id, obj.getId());
+        Assert.assertNotNull("Data on demand for 'Applicant' failed to provide an identifier", id);
+        obj = Applicant.findApplicant(id);
+        Assert.assertNotNull("Find method for 'Applicant' illegally returned null for id '" + id + "'", obj);
+        Assert.assertEquals("Find method for 'Applicant' returned the incorrect identifier", id, obj.getId());
     }
     
     @Test
-    public void SeekerIntegrationTest.testFindAllSeekers() {
-        Assert.assertNotNull("Data on demand for 'Seeker' failed to initialize correctly", dod.getRandomSeeker());
-        long count = Seeker.countSeekers();
-        Assert.assertTrue("Too expensive to perform a find all test for 'Seeker', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
-        List<Seeker> result = Seeker.findAllSeekers();
-        Assert.assertNotNull("Find all method for 'Seeker' illegally returned null", result);
-        Assert.assertTrue("Find all method for 'Seeker' failed to return any data", result.size() > 0);
+    public void SeekerIntegrationTest.testFindAllApplicants() {
+        Assert.assertNotNull("Data on demand for 'Applicant' failed to initialize correctly", dod.getRandomApplicant());
+        long count = Applicant.countApplicants();
+        Assert.assertTrue("Too expensive to perform a find all test for 'Applicant', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
+        List<Applicant> result = Applicant.findAllApplicants();
+        Assert.assertNotNull("Find all method for 'Applicant' illegally returned null", result);
+        Assert.assertTrue("Find all method for 'Applicant' failed to return any data", result.size() > 0);
     }
     
     @Test
-    public void SeekerIntegrationTest.testFindSeekerEntries() {
-        Assert.assertNotNull("Data on demand for 'Seeker' failed to initialize correctly", dod.getRandomSeeker());
-        long count = Seeker.countSeekers();
+    public void SeekerIntegrationTest.testFindApplicantEntries() {
+        Assert.assertNotNull("Data on demand for 'Applicant' failed to initialize correctly", dod.getRandomApplicant());
+        long count = Applicant.countApplicants();
         if (count > 20) count = 20;
         int firstResult = 0;
         int maxResults = (int) count;
-        List<Seeker> result = Seeker.findSeekerEntries(firstResult, maxResults);
-        Assert.assertNotNull("Find entries method for 'Seeker' illegally returned null", result);
-        Assert.assertEquals("Find entries method for 'Seeker' returned an incorrect number of entries", count, result.size());
+        List<Applicant> result = Applicant.findApplicantEntries(firstResult, maxResults);
+        Assert.assertNotNull("Find entries method for 'Applicant' illegally returned null", result);
+        Assert.assertEquals("Find entries method for 'Applicant' returned an incorrect number of entries", count, result.size());
     }
     
     @Test
     public void SeekerIntegrationTest.testFlush() {
-        Seeker obj = dod.getRandomSeeker();
-        Assert.assertNotNull("Data on demand for 'Seeker' failed to initialize correctly", obj);
+        Applicant obj = dod.getRandomApplicant();
+        Assert.assertNotNull("Data on demand for 'Applicant' failed to initialize correctly", obj);
         Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'Seeker' failed to provide an identifier", id);
-        obj = Seeker.findSeeker(id);
-        Assert.assertNotNull("Find method for 'Seeker' illegally returned null for id '" + id + "'", obj);
-        boolean modified =  dod.modifySeeker(obj);
+        Assert.assertNotNull("Data on demand for 'Applicant' failed to provide an identifier", id);
+        obj = Applicant.findApplicant(id);
+        Assert.assertNotNull("Find method for 'Applicant' illegally returned null for id '" + id + "'", obj);
+        boolean modified =  dod.modifyApplicant(obj);
         Integer currentVersion = obj.getVersion();
         obj.flush();
-        Assert.assertTrue("Version for 'Seeker' failed to increment on flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
+        Assert.assertTrue("Version for 'Applicant' failed to increment on flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
     public void SeekerIntegrationTest.testMergeUpdate() {
-        Seeker obj = dod.getRandomSeeker();
-        Assert.assertNotNull("Data on demand for 'Seeker' failed to initialize correctly", obj);
+        Applicant obj = dod.getRandomApplicant();
+        Assert.assertNotNull("Data on demand for 'Applicant' failed to initialize correctly", obj);
         Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'Seeker' failed to provide an identifier", id);
-        obj = Seeker.findSeeker(id);
-        boolean modified =  dod.modifySeeker(obj);
+        Assert.assertNotNull("Data on demand for 'Applicant' failed to provide an identifier", id);
+        obj = Applicant.findApplicant(id);
+        boolean modified =  dod.modifyApplicant(obj);
         Integer currentVersion = obj.getVersion();
-        Seeker merged = obj.merge();
+        Applicant merged = obj.merge();
         obj.flush();
         Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
-        Assert.assertTrue("Version for 'Seeker' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
+        Assert.assertTrue("Version for 'Applicant' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
     public void SeekerIntegrationTest.testPersist() {
-        Assert.assertNotNull("Data on demand for 'Seeker' failed to initialize correctly", dod.getRandomSeeker());
-        Seeker obj = dod.getNewTransientSeeker(Integer.MAX_VALUE);
-        Assert.assertNotNull("Data on demand for 'Seeker' failed to provide a new transient entity", obj);
-        Assert.assertNull("Expected 'Seeker' identifier to be null", obj.getId());
+        Assert.assertNotNull("Data on demand for 'Applicant' failed to initialize correctly", dod.getRandomApplicant());
+        Applicant obj = dod.getNewTransientApplicant(Integer.MAX_VALUE);
+        Assert.assertNotNull("Data on demand for 'Applicant' failed to provide a new transient entity", obj);
+        Assert.assertNull("Expected 'Applicant' identifier to be null", obj.getId());
         obj.persist();
         obj.flush();
-        Assert.assertNotNull("Expected 'Seeker' identifier to no longer be null", obj.getId());
+        Assert.assertNotNull("Expected 'Applicant' identifier to no longer be null", obj.getId());
     }
     
     @Test
     public void SeekerIntegrationTest.testRemove() {
-        Seeker obj = dod.getRandomSeeker();
-        Assert.assertNotNull("Data on demand for 'Seeker' failed to initialize correctly", obj);
+        Applicant obj = dod.getRandomApplicant();
+        Assert.assertNotNull("Data on demand for 'Applicant' failed to initialize correctly", obj);
         Long id = obj.getId();
-        Assert.assertNotNull("Data on demand for 'Seeker' failed to provide an identifier", id);
-        obj = Seeker.findSeeker(id);
+        Assert.assertNotNull("Data on demand for 'Applicant' failed to provide an identifier", id);
+        obj = Applicant.findApplicant(id);
         obj.remove();
         obj.flush();
-        Assert.assertNull("Failed to remove 'Seeker' with identifier '" + id + "'", Seeker.findSeeker(id));
+        Assert.assertNull("Failed to remove 'Applicant' with identifier '" + id + "'", Applicant.findApplicant(id));
     }
     
 }

@@ -23,5 +23,9 @@
             <menu:item id="i_tag_new" messageCode="global_menu_new" url="/tags?form" z="c2MR5d7dttBSgnPxMMH7oOEDl6Q="/>
             <menu:item id="i_tag_list" messageCode="global_menu_list" url="/tags?page=1&amp;size=${empty param.size ? 10 : param.size}" z="HsTcxZ80PNENgslZ1+b/pv8MYug="/>
         </menu:category>
+        <menu:category id="c_applicant" z="m7ohrEWbFNJvxRTh9uLIHgnxP5A=">
+            <menu:item id="i_applicant_new" messageCode="global_menu_new" url="/seekers?form" z="I85Nxo10jkjK/PJMNMjggwKr8Ts="/>
+            <menu:item id="i_applicant_list" messageCode="global_menu_list" url="/seekers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="v30qFka/XXJcLX43tgyABTESSBU="/>
+        </menu:category>
     </menu:menu>
 </div>

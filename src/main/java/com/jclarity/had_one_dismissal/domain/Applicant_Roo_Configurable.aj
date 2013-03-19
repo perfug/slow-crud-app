@@ -3,11 +3,11 @@
 
 package com.jclarity.had_one_dismissal.domain;
 
-import com.jclarity.had_one_dismissal.domain.Seeker;
+import com.jclarity.had_one_dismissal.domain.Applicant;
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect Seeker_Roo_Configurable {
+privileged aspect Applicant_Roo_Configurable {
     
-    declare @type: Seeker: @Configurable;
+    declare @type: Applicant: @Configurable;
     
 }

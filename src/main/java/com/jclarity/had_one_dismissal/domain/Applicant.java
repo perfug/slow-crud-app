@@ -13,7 +13,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-public class Seeker {
+public class Applicant {
 
     @NotNull
     @Size(min = 10)
