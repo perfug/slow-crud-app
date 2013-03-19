@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_jclarity_had_one_dismissal_domain_Location" object="${location}" path="/locations" z="4TQQI/6gbcabbBrnVl08hIaAl9s=">
+        <field:display field="name" id="s_com_jclarity_had_one_dismissal_domain_Location_name" object="${location}" z="9BHNgZA4wjsD2Hwu09ItmbqBqrI="/>
+        <field:display field="memberOf" id="s_com_jclarity_had_one_dismissal_domain_Location_memberOf" object="${location}" z="eGkse7Hw2KICtcnHVUEN3+JBF9Q="/>
+    </page:show>
+</div>
