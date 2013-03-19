@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_jclarity_had_one_dismissal_domain_Applicant" modelAttribute="applicant" path="/seekers" render="${empty dependencies}" z="7Tmd6ViLc05Y9H1TB0l0/DZ/vaU=">
+        <field:input field="firstName" id="c_com_jclarity_had_one_dismissal_domain_Applicant_firstName" min="10" required="true" z="tETNTiOfn99ibMbsov2rMepVjWM="/>
+        <field:input field="surName" id="c_com_jclarity_had_one_dismissal_domain_Applicant_surName" min="10" required="true" z="CW3A9h+y7EDYUtPnjtWTaG0N/og="/>
+        <field:input field="yearsExperience" id="c_com_jclarity_had_one_dismissal_domain_Applicant_yearsExperience" z="XfSz5bgFPuGafuDqo1LXJJ+9EDg="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_jclarity_had_one_dismissal_domain_Applicant" render="${not empty dependencies}" z="mt51H0IVqxBzAMnzEFww0V2yEAM="/>
+</div>

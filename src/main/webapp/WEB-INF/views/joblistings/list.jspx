@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_jclarity_had_one_dismissal_domain_JobListing" items="${joblistings}" z="5S79FwSGCqVaLsuCV2/RM8oHtCc=">
+        <table:table data="${joblistings}" id="l_com_jclarity_had_one_dismissal_domain_JobListing" path="/joblistings" z="EF1GvcdiPZjece0gnF7I4OR0cDs=">
+            <table:column id="c_com_jclarity_had_one_dismissal_domain_JobListing_title" property="title" z="WWRUPX+XlSCFT8fD47/EMS+fTHQ="/>
+            <table:column id="c_com_jclarity_had_one_dismissal_domain_JobListing_salaryLowerBound" property="salaryLowerBound" z="kRhafWf0rEtlH5955ke0092azE8="/>
+            <table:column id="c_com_jclarity_had_one_dismissal_domain_JobListing_salaryUpperBound" property="salaryUpperBound" z="gHIb4d2IdSXmXNXO85cmGcdq2yE="/>
+            <table:column id="c_com_jclarity_had_one_dismissal_domain_JobListing_company" property="company" z="jj+F/wm8Unicr4Pn+0GNMCt/0g8="/>
+            <table:column date="true" dateTimePattern="${jobListing_postedat_date_format}" id="c_com_jclarity_had_one_dismissal_domain_JobListing_postedAt" property="postedAt" z="4c3RhOBbziTmfQqwVeMFyxdKA5M="/>
+            <table:column id="c_com_jclarity_had_one_dismissal_domain_JobListing_description" property="description" z="Sn5BIpJ8qvZvRkfsVdLXbdLF8DA="/>
+        </table:table>
+    </page:list>
+</div>
