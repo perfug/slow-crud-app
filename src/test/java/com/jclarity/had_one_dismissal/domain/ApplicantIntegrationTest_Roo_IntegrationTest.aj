@@ -4,8 +4,8 @@
 package com.jclarity.had_one_dismissal.domain;
 
 import com.jclarity.had_one_dismissal.domain.Applicant;
-import com.jclarity.had_one_dismissal.domain.SeekerDataOnDemand;
-import com.jclarity.had_one_dismissal.domain.SeekerIntegrationTest;
+import com.jclarity.had_one_dismissal.domain.ApplicantDataOnDemand;
+import com.jclarity.had_one_dismissal.domain.ApplicantIntegrationTest;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,26 +15,26 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-privileged aspect SeekerIntegrationTest_Roo_IntegrationTest {
+privileged aspect ApplicantIntegrationTest_Roo_IntegrationTest {
     
-    declare @type: SeekerIntegrationTest: @RunWith(SpringJUnit4ClassRunner.class);
+    declare @type: ApplicantIntegrationTest: @RunWith(SpringJUnit4ClassRunner.class);
     
-    declare @type: SeekerIntegrationTest: @ContextConfiguration(locations = "classpath:/META-INF/spring/applicationContext*.xml");
+    declare @type: ApplicantIntegrationTest: @ContextConfiguration(locations = "classpath:/META-INF/spring/applicationContext*.xml");
     
-    declare @type: SeekerIntegrationTest: @Transactional;
+    declare @type: ApplicantIntegrationTest: @Transactional;
     
     @Autowired
-    SeekerDataOnDemand SeekerIntegrationTest.dod;
+    ApplicantDataOnDemand ApplicantIntegrationTest.dod;
     
     @Test
-    public void SeekerIntegrationTest.testCountApplicants() {
+    public void ApplicantIntegrationTest.testCountApplicants() {
         Assert.assertNotNull("Data on demand for 'Applicant' failed to initialize correctly", dod.getRandomApplicant());
         long count = Applicant.countApplicants();
         Assert.assertTrue("Counter for 'Applicant' incorrectly reported there were no entries", count > 0);
     }
     
     @Test
-    public void SeekerIntegrationTest.testFindApplicant() {
+    public void ApplicantIntegrationTest.testFindApplicant() {
         Applicant obj = dod.getRandomApplicant();
         Assert.assertNotNull("Data on demand for 'Applicant' failed to initialize correctly", obj);
         Long id = obj.getId();
@@ -45,7 +45,7 @@ privileged aspect SeekerIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void SeekerIntegrationTest.testFindAllApplicants() {
+    public void ApplicantIntegrationTest.testFindAllApplicants() {
         Assert.assertNotNull("Data on demand for 'Applicant' failed to initialize correctly", dod.getRandomApplicant());
         long count = Applicant.countApplicants();
         Assert.assertTrue("Too expensive to perform a find all test for 'Applicant', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
@@ -55,7 +55,7 @@ privileged aspect SeekerIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void SeekerIntegrationTest.testFindApplicantEntries() {
+    public void ApplicantIntegrationTest.testFindApplicantEntries() {
         Assert.assertNotNull("Data on demand for 'Applicant' failed to initialize correctly", dod.getRandomApplicant());
         long count = Applicant.countApplicants();
         if (count > 20) count = 20;
@@ -67,7 +67,7 @@ privileged aspect SeekerIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void SeekerIntegrationTest.testFlush() {
+    public void ApplicantIntegrationTest.testFlush() {
         Applicant obj = dod.getRandomApplicant();
         Assert.assertNotNull("Data on demand for 'Applicant' failed to initialize correctly", obj);
         Long id = obj.getId();
@@ -81,7 +81,7 @@ privileged aspect SeekerIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void SeekerIntegrationTest.testMergeUpdate() {
+    public void ApplicantIntegrationTest.testMergeUpdate() {
         Applicant obj = dod.getRandomApplicant();
         Assert.assertNotNull("Data on demand for 'Applicant' failed to initialize correctly", obj);
         Long id = obj.getId();
@@ -96,7 +96,7 @@ privileged aspect SeekerIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void SeekerIntegrationTest.testPersist() {
+    public void ApplicantIntegrationTest.testPersist() {
         Assert.assertNotNull("Data on demand for 'Applicant' failed to initialize correctly", dod.getRandomApplicant());
         Applicant obj = dod.getNewTransientApplicant(Integer.MAX_VALUE);
         Assert.assertNotNull("Data on demand for 'Applicant' failed to provide a new transient entity", obj);
@@ -107,7 +107,7 @@ privileged aspect SeekerIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void SeekerIntegrationTest.testRemove() {
+    public void ApplicantIntegrationTest.testRemove() {
         Applicant obj = dod.getRandomApplicant();
         Assert.assertNotNull("Data on demand for 'Applicant' failed to initialize correctly", obj);
         Long id = obj.getId();

@@ -3,11 +3,11 @@
 
 package com.jclarity.had_one_dismissal.domain;
 
-import com.jclarity.had_one_dismissal.domain.SeekerIntegrationTest;
+import com.jclarity.had_one_dismissal.domain.ApplicantIntegrationTest;
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect SeekerIntegrationTest_Roo_Configurable {
+privileged aspect ApplicantIntegrationTest_Roo_Configurable {
     
-    declare @type: SeekerIntegrationTest: @Configurable;
+    declare @type: ApplicantIntegrationTest: @Configurable;
     
 }

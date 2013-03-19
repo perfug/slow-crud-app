@@ -4,7 +4,7 @@
 package com.jclarity.had_one_dismissal.domain;
 
 import com.jclarity.had_one_dismissal.domain.Applicant;
-import com.jclarity.had_one_dismissal.domain.SeekerDataOnDemand;
+import com.jclarity.had_one_dismissal.domain.ApplicantDataOnDemand;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,15 +14,15 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import org.springframework.stereotype.Component;
 
-privileged aspect SeekerDataOnDemand_Roo_DataOnDemand {
+privileged aspect ApplicantDataOnDemand_Roo_DataOnDemand {
     
-    declare @type: SeekerDataOnDemand: @Component;
+    declare @type: ApplicantDataOnDemand: @Component;
     
-    private Random SeekerDataOnDemand.rnd = new SecureRandom();
+    private Random ApplicantDataOnDemand.rnd = new SecureRandom();
     
-    private List<Applicant> SeekerDataOnDemand.data;
+    private List<Applicant> ApplicantDataOnDemand.data;
     
-    public Applicant SeekerDataOnDemand.getNewTransientApplicant(int index) {
+    public Applicant ApplicantDataOnDemand.getNewTransientApplicant(int index) {
         Applicant obj = new Applicant();
         setFirstName(obj, index);
         setSurName(obj, index);
@@ -30,22 +30,22 @@ privileged aspect SeekerDataOnDemand_Roo_DataOnDemand {
         return obj;
     }
     
-    public void SeekerDataOnDemand.setFirstName(Applicant obj, int index) {
+    public void ApplicantDataOnDemand.setFirstName(Applicant obj, int index) {
         String firstName = "firstName_" + index;
         obj.setFirstName(firstName);
     }
     
-    public void SeekerDataOnDemand.setSurName(Applicant obj, int index) {
+    public void ApplicantDataOnDemand.setSurName(Applicant obj, int index) {
         String surName = "surNamex_" + index;
         obj.setSurName(surName);
     }
     
-    public void SeekerDataOnDemand.setYearsExperience(Applicant obj, int index) {
+    public void ApplicantDataOnDemand.setYearsExperience(Applicant obj, int index) {
         int yearsExperience = index;
         obj.setYearsExperience(yearsExperience);
     }
     
-    public Applicant SeekerDataOnDemand.getSpecificApplicant(int index) {
+    public Applicant ApplicantDataOnDemand.getSpecificApplicant(int index) {
         init();
         if (index < 0) {
             index = 0;
@@ -58,18 +58,18 @@ privileged aspect SeekerDataOnDemand_Roo_DataOnDemand {
         return Applicant.findApplicant(id);
     }
     
-    public Applicant SeekerDataOnDemand.getRandomApplicant() {
+    public Applicant ApplicantDataOnDemand.getRandomApplicant() {
         init();
         Applicant obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
         return Applicant.findApplicant(id);
     }
     
-    public boolean SeekerDataOnDemand.modifyApplicant(Applicant obj) {
+    public boolean ApplicantDataOnDemand.modifyApplicant(Applicant obj) {
         return false;
     }
     
-    public void SeekerDataOnDemand.init() {
+    public void ApplicantDataOnDemand.init() {
         int from = 0;
         int to = 10;
         data = Applicant.findApplicantEntries(from, to);
