@@ -40,7 +40,6 @@ public class Search {
         addTitleQuery(jobTitle, queryString);
         addLocationQuery(location, queryString);
         addSalaryQuery(salaryRange, queryString);
-        System.out.println("QUERY: "+queryString);
 
         EntityManager em = JobListing.entityManager();
         TypedQuery<JobListing> query = em.createQuery(queryString.toString(), JobListing.class);
