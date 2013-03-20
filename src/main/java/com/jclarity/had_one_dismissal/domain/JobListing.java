@@ -19,15 +19,15 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(finders = { "findJobListingsByCompany", "findJobListingsBySalaryLowerBound", "findJobListingsBySalaryUpperBound", "findJobListingsByTitleLike" })
 public class JobListing {
 
     @NotNull
-    @Size(min = 10)
+    @Size(min = 2)
     private String title;
 
     @NotNull
-    @Size(min = 100)
+    @Size(min = 2)
     private String description;
 
     private int salaryLowerBound;

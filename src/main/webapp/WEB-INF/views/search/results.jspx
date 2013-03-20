@@ -1,0 +1,21 @@
+
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <jsp:output omit-xml-declaration="yes"/>
+  <spring:message code="label_search_index" htmlEscape="false" var="title"/>
+  <spring:message code="application_name" htmlEscape="false" var="app_name"/>
+    <h3>Job Listing Results</h3>
+    <p>${resultCount}</p>
+    <table>
+    <tr>
+        <th>Title</th>
+        <th>Salary</th>
+    </tr>
+    <c:forEach items="${results}" var="listing" varStatus="count">
+        <tr>
+            <td>${listing.title}</td>
+            <td>&pound;${listing.salaryLowerBound} - &pound;${listing.salaryUpperBound}</td>
+        </tr>
+    </c:forEach>
+    </table>
+</div>

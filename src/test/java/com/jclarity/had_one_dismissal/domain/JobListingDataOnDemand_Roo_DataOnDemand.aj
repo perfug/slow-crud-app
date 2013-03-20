@@ -41,7 +41,7 @@ privileged aspect JobListingDataOnDemand_Roo_DataOnDemand {
     }
     
     public void JobListingDataOnDemand.setDescription(JobListing obj, int index) {
-        String description = "descriptionxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx_" + index;
+        String description = "description_" + index;
         obj.setDescription(description);
     }
     
@@ -61,7 +61,7 @@ privileged aspect JobListingDataOnDemand_Roo_DataOnDemand {
     }
     
     public void JobListingDataOnDemand.setTitle(JobListing obj, int index) {
-        String title = "titlexxx_" + index;
+        String title = "title_" + index;
         obj.setTitle(title);
     }
     
