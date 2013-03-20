@@ -4,9 +4,9 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_com_jclarity_had_one_dismissal_domain_Applicant" items="${applicants}" z="ZDpSwQJONWn4n4qIIJx4pCIANnw=">
         <table:table data="${applicants}" id="l_com_jclarity_had_one_dismissal_domain_Applicant" path="/applicant" z="9h9iGfqIeQcldOZ3MCgk8FINCCY=">
-            <table:column id="c_com_jclarity_had_one_dismissal_domain_Applicant_firstName" property="firstName" z="uXLDHyOJJ6hRjPa92u6jRn72PTs="/>
-            <table:column id="c_com_jclarity_had_one_dismissal_domain_Applicant_surName" property="surName" z="eDFteVt8Dn7P8kIjleGaaSqubw4="/>
             <table:column id="c_com_jclarity_had_one_dismissal_domain_Applicant_yearsExperience" property="yearsExperience" z="3mwEkQNecXHSjVsosKz8nCLBS20="/>
+            <table:column id="c_com_jclarity_had_one_dismissal_domain_Applicant_surname" property="surname" z="m8x+k/0y1Gbvtbc+1qBE+OoPNOM="/>
+            <table:column id="c_com_jclarity_had_one_dismissal_domain_Applicant_foreame" property="foreame" z="Q7vBym2FGQY56+TsgPbGFPldjzc="/>
         </table:table>
     </page:list>
 </div>

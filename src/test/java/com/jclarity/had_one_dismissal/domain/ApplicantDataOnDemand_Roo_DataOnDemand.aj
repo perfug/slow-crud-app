@@ -24,20 +24,20 @@ privileged aspect ApplicantDataOnDemand_Roo_DataOnDemand {
     
     public Applicant ApplicantDataOnDemand.getNewTransientApplicant(int index) {
         Applicant obj = new Applicant();
-        setFirstName(obj, index);
-        setSurName(obj, index);
+        setForeame(obj, index);
+        setSurname(obj, index);
         setYearsExperience(obj, index);
         return obj;
     }
     
-    public void ApplicantDataOnDemand.setFirstName(Applicant obj, int index) {
-        String firstName = "firstName_" + index;
-        obj.setFirstName(firstName);
+    public void ApplicantDataOnDemand.setForeame(Applicant obj, int index) {
+        String foreame = "foreame_" + index;
+        obj.setForeame(foreame);
     }
     
-    public void ApplicantDataOnDemand.setSurName(Applicant obj, int index) {
-        String surName = "surName_" + index;
-        obj.setSurName(surName);
+    public void ApplicantDataOnDemand.setSurname(Applicant obj, int index) {
+        String surname = "surname_" + index;
+        obj.setSurname(surname);
     }
     
     public void ApplicantDataOnDemand.setYearsExperience(Applicant obj, int index) {

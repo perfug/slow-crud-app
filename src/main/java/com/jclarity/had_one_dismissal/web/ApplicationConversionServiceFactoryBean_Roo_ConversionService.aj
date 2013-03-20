@@ -20,7 +20,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Applicant, String> ApplicationConversionServiceFactoryBean.getApplicantToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.jclarity.had_one_dismissal.domain.Applicant, java.lang.String>() {
             public String convert(Applicant applicant) {
-                return new StringBuilder().append(applicant.getFirstName()).append(' ').append(applicant.getSurName()).append(' ').append(applicant.getYearsExperience()).toString();
+                return new StringBuilder().append(applicant.getForeame()).append(' ').append(applicant.getSurname()).append(' ').append(applicant.getYearsExperience()).toString();
             }
         };
     }

@@ -80,8 +80,8 @@ public class Populate {
                 continue;
 
             Applicant applicant = new Applicant();
-            applicant.setFirstName(split[0]);
-            applicant.setSurName(split[1]);
+            applicant.setForeame(split[0]);
+            applicant.setSurname(split[1]);
             applicant.setYearsExperience(count);
             applicant.persist();
             count++;

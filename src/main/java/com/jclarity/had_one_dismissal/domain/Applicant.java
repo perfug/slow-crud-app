@@ -17,11 +17,11 @@ public class Applicant {
 
     @NotNull
     @Size(min = 2)
-    private String firstName;
+    private String foreame;
 
     @NotNull
     @Size(min = 2)
-    private String surName;
+    private String surname;
 
     private int yearsExperience;
 
