@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,6 +20,7 @@ import com.jclarity.had_one_dismissal.domain.Company;
 import com.jclarity.had_one_dismissal.domain.JobListing;
 import com.jclarity.had_one_dismissal.domain.Location;
 import com.jclarity.had_one_dismissal.domain.Tag;
+import com.jclarity.had_one_dismissal.jmx.PerformanceProblems;
 
 @RequestMapping("/populate/**")
 @Controller
@@ -26,15 +28,19 @@ public class Populate {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Populate.class);
 
+    @Autowired private PerformanceProblems problems;
+
     @RequestMapping
     public String index() {
         LOGGER.debug("Repopulating the database");
         try {
-            loadLocations();
-            loadTags();
-            loadNames();
-            loadCompanies();
-            loadJobListings();
+            if (!problems.isBatchingDBQueries()) {
+                loadLocations();
+                loadTags();
+                loadNames();
+                loadCompanies();
+                loadJobListings();
+            }
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
         }

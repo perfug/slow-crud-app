@@ -470,6 +470,7 @@
                     <webAppConfig>
                         <contextPath>/${project.name}</contextPath>
                     </webAppConfig>
+                    <jettyXml>src/main/resources/jetty-jmx.xml</jettyXml>
                 </configuration>
             </plugin>
         </plugins>
