@@ -30,8 +30,4 @@ privileged aspect Company_Roo_JavaBean {
         return this.tags;
     }
     
-    public void Company.setTags(Set<Tag> tags) {
-        this.tags = tags;
-    }
-    
 }

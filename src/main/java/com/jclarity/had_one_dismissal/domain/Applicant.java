@@ -16,11 +16,11 @@ import org.springframework.roo.addon.tostring.RooToString;
 public class Applicant {
 
     @NotNull
-    @Size(min = 10)
+    @Size(min = 2)
     private String firstName;
 
     @NotNull
-    @Size(min = 10)
+    @Size(min = 2)
     private String surName;
 
     private int yearsExperience;

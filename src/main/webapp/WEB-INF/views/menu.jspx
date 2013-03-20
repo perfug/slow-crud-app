@@ -15,10 +15,6 @@
             <menu:item id="i_location_new" messageCode="global_menu_new" url="/locations?form" z="sW8KSnwNnd9wjssI0lLV1kzOguk="/>
             <menu:item id="i_location_list" messageCode="global_menu_list" url="/locations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="VdKLEljpeTLil2W6A3GdWmSBzXI="/>
         </menu:category>
-        <menu:category id="c_seeker" z="9NP5vjaIhaAfSEMyNg3lQpC5Znk=">
-            <menu:item id="i_seeker_new" messageCode="global_menu_new" url="/seekers?form" z="kgsf9u4dPMMFvXNOEhB6mwmANwE="/>
-            <menu:item id="i_seeker_list" messageCode="global_menu_list" url="/seekers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="IBBG6lb+n1/yCJjpjRetLnONoK4="/>
-        </menu:category>
         <menu:category id="c_tag" z="zbrDBteXk3LlkQMQy3xXpSv2428=">
             <menu:item id="i_tag_new" messageCode="global_menu_new" url="/tags?form" z="c2MR5d7dttBSgnPxMMH7oOEDl6Q="/>
             <menu:item id="i_tag_list" messageCode="global_menu_list" url="/tags?page=1&amp;size=${empty param.size ? 10 : param.size}" z="HsTcxZ80PNENgslZ1+b/pv8MYug="/>
@@ -26,6 +22,9 @@
         <menu:category id="c_applicant" z="m7ohrEWbFNJvxRTh9uLIHgnxP5A=">
             <menu:item id="i_applicant_new" messageCode="global_menu_new" url="/seekers?form" z="I85Nxo10jkjK/PJMNMjggwKr8Ts="/>
             <menu:item id="i_applicant_list" messageCode="global_menu_list" url="/seekers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="v30qFka/XXJcLX43tgyABTESSBU="/>
+        </menu:category>
+        <menu:category id="c_controller" z="nj8Dm3hojIyIEyPkwE1UMDIs+K8=">
+            <menu:item id="i_controller__populateindex_id" messageCode="global_generic" url="/populate/index" z="StiXN7QxCnrr1Qgb+8+zBSWG0y8="/>
         </menu:category>
     </menu:menu>
 </div>

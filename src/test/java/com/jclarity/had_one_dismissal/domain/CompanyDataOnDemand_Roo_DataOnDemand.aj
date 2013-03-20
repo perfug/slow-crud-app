@@ -34,7 +34,7 @@ privileged aspect CompanyDataOnDemand_Roo_DataOnDemand {
     }
     
     public void CompanyDataOnDemand.setName(Company obj, int index) {
-        String name = "namexxxx_" + index;
+        String name = "name_" + index;
         obj.setName(name);
     }
     

@@ -5,6 +5,5 @@
     <page:show id="ps_com_jclarity_had_one_dismissal_domain_Company" object="${company}" path="/companys" z="9zABFN4Zy1bvDCPefQmtiHtBojg=">
         <field:display field="name" id="s_com_jclarity_had_one_dismissal_domain_Company_name" object="${company}" z="VoqYK8B/zRTxAj2yfWGGJl6sB40="/>
         <field:display field="location" id="s_com_jclarity_had_one_dismissal_domain_Company_location" object="${company}" z="POwLOdNnq+gOeNlYFDL62tcqjdU="/>
-        <field:display field="tags" id="s_com_jclarity_had_one_dismissal_domain_Company_tags" object="${company}" z="N8F8RfTXWWn2kYEqQ+qg7sUOsWo="/>
     </page:show>
 </div>

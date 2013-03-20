@@ -14,9 +14,10 @@ import org.springframework.roo.addon.tostring.RooToString;
 public class Location {
 
     @NotNull
-    @Size(min = 10)
+    @Size(min = 2)
     private String name;
 
     @ManyToOne
     private Location memberOf;
+
 }

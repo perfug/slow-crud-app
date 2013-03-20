@@ -4,7 +4,7 @@
 package com.jclarity.had_one_dismissal.web;
 
 import com.jclarity.had_one_dismissal.domain.Applicant;
-import com.jclarity.had_one_dismissal.web.SeekerController;
+import com.jclarity.had_one_dismissal.web.ApplicantController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -17,34 +17,34 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
-privileged aspect SeekerController_Roo_Controller {
+privileged aspect ApplicantController_Roo_Controller {
     
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String SeekerController.create(@Valid Applicant applicant, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String ApplicantController.create(@Valid Applicant applicant, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, applicant);
-            return "seekers/create";
+            return "applicant/create";
         }
         uiModel.asMap().clear();
         applicant.persist();
-        return "redirect:/seekers/" + encodeUrlPathSegment(applicant.getId().toString(), httpServletRequest);
+        return "redirect:/applicant/" + encodeUrlPathSegment(applicant.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
-    public String SeekerController.createForm(Model uiModel) {
+    public String ApplicantController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Applicant());
-        return "seekers/create";
+        return "applicant/create";
     }
     
     @RequestMapping(value = "/{id}", produces = "text/html")
-    public String SeekerController.show(@PathVariable("id") Long id, Model uiModel) {
+    public String ApplicantController.show(@PathVariable("id") Long id, Model uiModel) {
         uiModel.addAttribute("applicant", Applicant.findApplicant(id));
         uiModel.addAttribute("itemId", id);
-        return "seekers/show";
+        return "applicant/show";
     }
     
     @RequestMapping(produces = "text/html")
-    public String SeekerController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public String ApplicantController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
@@ -54,41 +54,41 @@ privileged aspect SeekerController_Roo_Controller {
         } else {
             uiModel.addAttribute("applicants", Applicant.findAllApplicants());
         }
-        return "seekers/list";
+        return "applicant/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String SeekerController.update(@Valid Applicant applicant, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String ApplicantController.update(@Valid Applicant applicant, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, applicant);
-            return "seekers/update";
+            return "applicant/update";
         }
         uiModel.asMap().clear();
         applicant.merge();
-        return "redirect:/seekers/" + encodeUrlPathSegment(applicant.getId().toString(), httpServletRequest);
+        return "redirect:/applicant/" + encodeUrlPathSegment(applicant.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
-    public String SeekerController.updateForm(@PathVariable("id") Long id, Model uiModel) {
+    public String ApplicantController.updateForm(@PathVariable("id") Long id, Model uiModel) {
         populateEditForm(uiModel, Applicant.findApplicant(id));
-        return "seekers/update";
+        return "applicant/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
-    public String SeekerController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public String ApplicantController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         Applicant applicant = Applicant.findApplicant(id);
         applicant.remove();
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/seekers";
+        return "redirect:/applicant";
     }
     
-    void SeekerController.populateEditForm(Model uiModel, Applicant applicant) {
+    void ApplicantController.populateEditForm(Model uiModel, Applicant applicant) {
         uiModel.addAttribute("applicant", applicant);
     }
     
-    String SeekerController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
+    String ApplicantController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();
         if (enc == null) {
             enc = WebUtils.DEFAULT_CHARACTER_ENCODING;

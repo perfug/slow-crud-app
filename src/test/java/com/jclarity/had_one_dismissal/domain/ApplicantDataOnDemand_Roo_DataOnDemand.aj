@@ -36,7 +36,7 @@ privileged aspect ApplicantDataOnDemand_Roo_DataOnDemand {
     }
     
     public void ApplicantDataOnDemand.setSurName(Applicant obj, int index) {
-        String surName = "surNamex_" + index;
+        String surName = "surName_" + index;
         obj.setSurName(surName);
     }
     

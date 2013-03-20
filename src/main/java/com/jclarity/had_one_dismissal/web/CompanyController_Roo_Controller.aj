@@ -5,7 +5,6 @@ package com.jclarity.had_one_dismissal.web;
 
 import com.jclarity.had_one_dismissal.domain.Company;
 import com.jclarity.had_one_dismissal.domain.Location;
-import com.jclarity.had_one_dismissal.domain.Tag;
 import com.jclarity.had_one_dismissal.web.CompanyController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -89,7 +88,6 @@ privileged aspect CompanyController_Roo_Controller {
     void CompanyController.populateEditForm(Model uiModel, Company company) {
         uiModel.addAttribute("company", company);
         uiModel.addAttribute("locations", Location.findAllLocations());
-        uiModel.addAttribute("tags", Tag.findAllTags());
     }
     
     String CompanyController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
