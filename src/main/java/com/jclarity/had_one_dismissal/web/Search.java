@@ -36,8 +36,6 @@ public class Search {
     }
 
     private List<JobListing> queryListings(String salaryRange, String keywords, String location, String jobTitle) {
-        // TODO: keywords
-
         StringBuilder queryString = new StringBuilder("SELECT o FROM JobListing AS o WHERE 1 = 1");
         addTitleQuery(jobTitle, queryString);
         addLocationQuery(location, queryString);
