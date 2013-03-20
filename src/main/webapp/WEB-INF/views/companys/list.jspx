@@ -6,7 +6,6 @@
         <table:table data="${companys}" id="l_com_jclarity_had_one_dismissal_domain_Company" path="/companys" z="8WtWFnbR/z2jCqPy8scn5cykLhc=">
             <table:column id="c_com_jclarity_had_one_dismissal_domain_Company_name" property="name" z="1kQnukp2fCaJuNdevETetSbqoSY="/>
             <table:column id="c_com_jclarity_had_one_dismissal_domain_Company_location" property="location" z="r5Dd5ScSTSVrmx3uBg6TXBUittY="/>
-            <table:column id="c_com_jclarity_had_one_dismissal_domain_Company_tags" property="tags" z="Wm3WetwHid1qpvb/XzrApeLToC0="/>
         </table:table>
     </page:list>
 </div>

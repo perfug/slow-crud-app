@@ -35,7 +35,7 @@ privileged aspect LocationDataOnDemand_Roo_DataOnDemand {
     }
     
     public void LocationDataOnDemand.setName(Location obj, int index) {
-        String name = "namexxxx_" + index;
+        String name = "name_" + index;
         obj.setName(name);
     }
     

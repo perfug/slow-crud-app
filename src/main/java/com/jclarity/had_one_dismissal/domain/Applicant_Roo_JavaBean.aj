@@ -7,20 +7,20 @@ import com.jclarity.had_one_dismissal.domain.Applicant;
 
 privileged aspect Applicant_Roo_JavaBean {
     
-    public String Applicant.getFirstName() {
-        return this.firstName;
+    public String Applicant.getForename() {
+        return this.forename;
     }
     
-    public void Applicant.setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void Applicant.setForename(String forename) {
+        this.forename = forename;
     }
     
-    public String Applicant.getSurName() {
-        return this.surName;
+    public String Applicant.getSurname() {
+        return this.surname;
     }
     
-    public void Applicant.setSurName(String surName) {
-        this.surName = surName;
+    public void Applicant.setSurname(String surname) {
+        this.surname = surname;
     }
     
     public int Applicant.getYearsExperience() {
