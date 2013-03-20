@@ -7,12 +7,12 @@ import com.jclarity.had_one_dismissal.domain.Applicant;
 
 privileged aspect Applicant_Roo_JavaBean {
     
-    public String Applicant.getForeame() {
-        return this.foreame;
+    public String Applicant.getForename() {
+        return this.forename;
     }
     
-    public void Applicant.setForeame(String foreame) {
-        this.foreame = foreame;
+    public void Applicant.setForename(String forename) {
+        this.forename = forename;
     }
     
     public String Applicant.getSurname() {

@@ -17,7 +17,7 @@ public class Applicant {
 
     @NotNull
     @Size(min = 2)
-    private String foreame;
+    private String forename;
 
     @NotNull
     @Size(min = 2)
