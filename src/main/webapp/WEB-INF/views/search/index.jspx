@@ -1,0 +1,35 @@
+
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <jsp:output omit-xml-declaration="yes"/>
+  <spring:message code="label_search_index" htmlEscape="false" var="title"/>
+  <spring:message code="application_name" htmlEscape="false" var="app_name"/>
+    <h3>Search for Jobs</h3>
+    
+    <form action="" method="post">
+        <table>
+            <tr>
+                <td><label field="location">Location</label></td>
+                <td><input name="location" /></td>
+            </tr>
+            <tr>
+                <td><label field="jobTitle">Job Title:</label></td>
+                <td><input name="jobTitle" /></td>
+            </tr>
+            <tr>
+                <td><label field="keywords">Keywords*:</label></td>
+                <td><input name="keywords" /></td>
+            </tr>
+            <tr>
+                <td><label field="salaryRange">Salary Range:</label></td>
+                <td><input name="salaryRange" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Find Jobs"/>
+                </td>
+            </tr>
+        </table>
+        <p>* keywords is a comma separated list of terms to search for.</p>
+    </form>
+</div>

@@ -3,7 +3,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_com_jclarity_had_one_dismissal_domain_Location" modelAttribute="location" path="/locations" versionField="Version" z="JqSdIOLTx2yamik+LDLZuuQO+Zw=">
-        <field:input field="name" id="c_com_jclarity_had_one_dismissal_domain_Location_name" min="10" required="true" z="CLLXNVcJ6UqEpPPEbFtmFxCyQQ8="/>
+        <field:input field="name" id="c_com_jclarity_had_one_dismissal_domain_Location_name" min="2" required="true" z="/S6noI6vdAkl979ULDD+2ZvzcnQ="/>
         <field:select field="memberOf" id="c_com_jclarity_had_one_dismissal_domain_Location_memberOf" itemValue="id" items="${locations}" path="/locations" z="aYjMwvKK98iMnzRrKtmvj+6R4zo="/>
     </form:update>
 </div>
