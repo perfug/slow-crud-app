@@ -18,5 +18,5 @@ public class Location {
     private String name;
 
     @ManyToOne
-    private com.jclarity.had_one_dismissal.domain.Location memberOf;
+    private Location memberOf;
 }

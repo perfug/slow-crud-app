@@ -38,6 +38,11 @@ public class Applicant {
 
     @Autowired
     private transient MailSender email;
+    
+    // TODO: re-add once I've worked out how to avoid spring shitting itself.
+    //@RooUploadedFile(contentType = "application/pdf")
+    //@Lob
+    //private byte[] cv;
 
     public void setForename(String name) {
         forename = name;
