@@ -19,5 +19,4 @@ public class Location {
 
     @ManyToOne
     private Location memberOf;
-
 }

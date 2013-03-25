@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_jclarity_auth_domain_WebUser" items="${webusers}" z="BzaxuIfPdEMWjUHya25Lr1+acTo=">
+        <table:table data="${webusers}" id="l_com_jclarity_auth_domain_WebUser" path="/webusers" z="JWbv/yD4HMH03KPVydImOxJWI74=">
+            <table:column id="c_com_jclarity_auth_domain_WebUser_username" property="username" z="t/l04d06eOHc/6+G+dqRa1Zk6Nc="/>
+            <table:column id="c_com_jclarity_auth_domain_WebUser_password" property="password" z="DqJj3lufxj02OWLI/1cxdci1+sk="/>
+        </table:table>
+    </page:list>
+</div>

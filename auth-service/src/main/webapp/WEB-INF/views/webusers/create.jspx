@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_jclarity_auth_domain_WebUser" modelAttribute="webUser" path="/webusers" render="${empty dependencies}" z="Irxb2hXzXuNDKRgwmyIroT3OrQo=">
+        <field:input field="username" id="c_com_jclarity_auth_domain_WebUser_username" z="6t/6/Nc3UidXjoVo4wF7nL1x+IY="/>
+        <field:input field="password" id="c_com_jclarity_auth_domain_WebUser_password" z="OqrUcfWNtO2bogtIuyLZUu+GIb4="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_jclarity_auth_domain_WebUser" render="${not empty dependencies}" z="P2vwJQANSFVnFMTfg6rMLO10SNY="/>
+</div>

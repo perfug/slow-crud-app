@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" id="menu" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+        <menu:category id="c_webuser" z="Nv87PWjcP8+1HDh6HsM2Jhikp94=">
+            <menu:item id="i_webuser_new" messageCode="global_menu_new" url="/webusers?form" z="V9x3UzHGx672bdn3W4TNNEx2I3U="/>
+            <menu:item id="i_webuser_list" messageCode="global_menu_list" url="/webusers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="9lFbAH506wt8sU2MWYnJ+DW9iO8="/>
+            <menu:item id="fi_webuser_usernameequals" messageCode="global_menu_find" url="/webusers?find=ByUsernameEquals&amp;form" z="7YQgJHF4tv/cHnrXKR7AWomZ23Q="/>
+            <menu:item id="fi_webuser_usernameequalsandpasswordequals" messageCode="global_menu_find" url="/webusers?find=ByUsernameEqualsAndPasswordEquals&amp;form" z="sHL2ZFU7D2ZUJ9NSBNrBLR/oTKQ="/>
+        </menu:category>
+        <menu:category id="c_controller" z="nj8Dm3hojIyIEyPkwE1UMDIs+K8=">
+            <menu:item id="i_controller__webuserindex_id" messageCode="global_generic" url="/webuser/index" z="0suMxamO1GL3siPt9hfBd8W4EWU="/>
+        </menu:category>
+    </menu:menu>
+</div>

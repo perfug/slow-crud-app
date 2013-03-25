@@ -27,5 +27,4 @@ public class Company {
 
     @ManyToMany(cascade = CascadeType.ALL)
     private final Set<Tag> tags = new HashSet<Tag>();
-
 }
