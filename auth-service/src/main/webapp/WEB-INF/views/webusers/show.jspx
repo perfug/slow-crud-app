@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_jclarity_auth_domain_WebUser" object="${webuser}" path="/webusers" z="gJJFbtupP14CMztbi2UKCB75p+w=">
+        <field:display field="username" id="s_com_jclarity_auth_domain_WebUser_username" object="${webuser}" z="kIwg5uhFJQLCZReTKJZlwBkIAfg="/>
+        <field:display field="password" id="s_com_jclarity_auth_domain_WebUser_password" object="${webuser}" z="8zdDHzU2i7H/BS74lFr4ZpGKxe0="/>
+    </page:show>
+</div>

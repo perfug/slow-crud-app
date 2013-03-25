@@ -11,16 +11,8 @@ privileged aspect Applicant_Roo_JavaBean {
         return this.forename;
     }
     
-    public void Applicant.setForename(String forename) {
-        this.forename = forename;
-    }
-    
     public String Applicant.getSurname() {
         return this.surname;
-    }
-    
-    public void Applicant.setSurname(String surname) {
-        this.surname = surname;
     }
     
     public int Applicant.getYearsExperience() {
