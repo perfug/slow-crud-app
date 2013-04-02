@@ -3,11 +3,11 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_com_jclarity_had_one_dismissal_domain_JobListing" modelAttribute="jobListing" path="/joblistings" versionField="Version" z="uxwx74yzG6VPuyEWjlChr77qIK4=">
-        <field:input field="title" id="c_com_jclarity_had_one_dismissal_domain_JobListing_title" min="10" required="true" z="F7yO+mhZbuZxW9wPnSDsW5d3oxo="/>
+        <field:input field="title" id="c_com_jclarity_had_one_dismissal_domain_JobListing_title" min="2" required="true" z="LboxglRHIIVG1fxYa8fs/NvFOGM="/>
         <field:input field="salaryLowerBound" id="c_com_jclarity_had_one_dismissal_domain_JobListing_salaryLowerBound" z="DEvm00rZHVxjkBHabGQTueZUgio="/>
         <field:input field="salaryUpperBound" id="c_com_jclarity_had_one_dismissal_domain_JobListing_salaryUpperBound" z="0xx/UYeATxHuw4GmF/wktt7RPEU="/>
         <field:select field="company" id="c_com_jclarity_had_one_dismissal_domain_JobListing_company" itemValue="id" items="${companys}" path="/companys" z="M8Sv0vqCys7gdzKikOUQ3Jbs+uo="/>
         <field:datetime dateTimePattern="${jobListing_postedat_date_format}" field="postedAt" id="c_com_jclarity_had_one_dismissal_domain_JobListing_postedAt" z="zWjf9ZZjmMmuQEKwwLTfSym7Vo4="/>
-        <field:input field="description" id="c_com_jclarity_had_one_dismissal_domain_JobListing_description" min="100" required="true" z="XS9fklaU6/svqSTNr6U4SDYZvPE="/>
+        <field:input field="description" id="c_com_jclarity_had_one_dismissal_domain_JobListing_description" min="2" required="true" z="0Ow0i0W99NkLUFl3m7ylO8azg4s="/>
     </form:update>
 </div>
