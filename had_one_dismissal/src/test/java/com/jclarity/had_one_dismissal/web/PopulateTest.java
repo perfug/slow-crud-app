@@ -25,7 +25,6 @@ public class PopulateTest {
     @Test
     public void loadsDataFromFiles() throws Exception {
         LOGGER.info("Populate Test");
-        System.out.println("fuck off");
         long total = System.currentTimeMillis();
         long time = total;
         Populate.loadLocations();
