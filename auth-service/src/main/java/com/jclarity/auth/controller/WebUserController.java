@@ -27,4 +27,5 @@ public class WebUserController {
         headers.add("Content-Type", "application/json; charset=utf-8");
         return new ResponseEntity<String>(WebUser.findWebUsersByUsernameEquals(username).getResultList().get(0).toJson(), headers, HttpStatus.OK);
     }
+
 }
