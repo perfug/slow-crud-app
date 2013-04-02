@@ -3,6 +3,8 @@ package com.jclarity.had_one_dismissal.domain;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.persistence.CascadeType;
 import javax.persistence.ManyToMany;
@@ -43,4 +45,7 @@ public class JobListing {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(style = "M-")
     private Date postedAt;
+
+    public static Lock LOCK = new ReentrantLock(true);
+
 }
