@@ -2,6 +2,8 @@ package com.jclarity.had_one_dismissal.domain;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.persistence.CascadeType;
 import javax.persistence.ManyToMany;
@@ -27,4 +29,7 @@ public class Company {
 
     @ManyToMany(cascade = CascadeType.ALL)
     private final Set<Tag> tags = new HashSet<Tag>();
+
+    public static Lock LOCK = new ReentrantLock(true);
+
 }
