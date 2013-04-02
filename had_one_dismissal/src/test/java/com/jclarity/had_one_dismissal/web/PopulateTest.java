@@ -35,36 +35,35 @@ public class PopulateTest {
     public void loadsDataFromFiles() throws Exception {
         int poolSize = Runtime.getRuntime().availableProcessors() * 2;
         ExecutorService executor = Executors.newFixedThreadPool(poolSize);
-        while(true) {
-            LOGGER.info("Populate Test");
-            long total = System.currentTimeMillis();
-            long time = total;
-            populate.deleteAll();
-            time = updateStopwatch(time, "deleteAll");
+        //        The following could be run in a while loop for microbenchmarking purposes
+        LOGGER.info("Populate Test");
+        long total = System.currentTimeMillis();
+        long time = total;
+        populate.deleteAll();
+        time = updateStopwatch(time, "deleteAll");
 
-            int blockCount = 2 + (APPLICANT_COUNT / STRIDE);
-            final CountDownLatch latch = new CountDownLatch(blockCount);
-            executor.execute(runnableOf(latch, "loadLocations"));
-            executor.execute(runnableOf(latch, "loadTags"));
-            for (int i = 0; i < APPLICANT_COUNT; i += STRIDE) {
-                executor.execute(runnableOf(latch, Populate.class.getMethod("loadApplicants", Integer.TYPE, Integer.TYPE), i, i + STRIDE));
-            }
-            latch.await();
-
-            time = System.currentTimeMillis();
-            populate.loadCompanies();
-            time = updateStopwatch(time, "loadCompanies");
-            populate.loadJobListings();
-            updateStopwatch(time, "loadJobListings");
-
-            total = System.currentTimeMillis() - total;
-            LOGGER.info("TOTAL: {}", total);
-
-            assertEquals(272L, Location.countLocations());
-            assertEquals(658L, Tag.countTags());
-            assertEquals(APPLICANT_COUNT, Applicant.countApplicants());
-            assertEquals(2155, Company.countCompanys());
+        int blockCount = 2 + (APPLICANT_COUNT / STRIDE);
+        final CountDownLatch latch = new CountDownLatch(blockCount);
+        executor.execute(runnableOf(latch, "loadLocations"));
+        executor.execute(runnableOf(latch, "loadTags"));
+        for (int i = 0; i < APPLICANT_COUNT; i += STRIDE) {
+            executor.execute(runnableOf(latch, Populate.class.getMethod("loadApplicants", Integer.TYPE, Integer.TYPE), i, i + STRIDE));
         }
+        latch.await();
+
+        time = System.currentTimeMillis();
+        populate.loadCompanies();
+        time = updateStopwatch(time, "loadCompanies");
+        populate.loadJobListings();
+        updateStopwatch(time, "loadJobListings");
+
+        total = System.currentTimeMillis() - total;
+        LOGGER.info("TOTAL: {}", total);
+
+        assertEquals(272L, Location.countLocations());
+        assertEquals(658L, Tag.countTags());
+        assertEquals(APPLICANT_COUNT, Applicant.countApplicants());
+        assertEquals(2155, Company.countCompanys());
     }
 
     private Runnable runnableOf(final CountDownLatch latch, final String methodName, final Object ... args) throws SecurityException, NoSuchMethodException {
