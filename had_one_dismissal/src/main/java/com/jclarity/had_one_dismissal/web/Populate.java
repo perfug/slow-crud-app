@@ -31,14 +31,14 @@ public class Populate {
 
     @Autowired private PerformanceProblems problems;
 
-    @Transactional
     @RequestMapping
     public String index() {
         try {
             if (!problems.isBatchingDBQueries()) {
+                deleteAll();
                 loadLocations();
                 loadTags();
-                loadNames();
+                loadApplicants();
                 loadCompanies();
                 loadJobListings();
             }
@@ -48,7 +48,27 @@ public class Populate {
         return "populate/index";
     }
 
-    static void loadJobListings() {
+    @Transactional
+    public void deleteAll() {
+        for (JobListing listing : JobListing.findAllJobListings()) {
+            listing.remove();
+        }
+        for (Company company : Company.findAllCompanys()) {
+            company.remove();
+        }
+        for (Applicant applicant : Applicant.findAllApplicants()) {
+            applicant.remove();
+        }
+        for (Tag tag : Tag.findAllTags()) {
+            tag.remove();
+        }
+        for (Location location : Location.findAllLocations()) {
+            location.remove();
+        }
+    }
+
+    @Transactional
+    public void loadJobListings() {
         String description = "some job description";
         List<Tag> tags = Tag.findAllTags();
         List<Company> companys = Company.findAllCompanys();
@@ -66,12 +86,9 @@ public class Populate {
         }
     }
 
-    static void loadCompanies() throws URISyntaxException, IOException {
+    @Transactional
+    public void loadCompanies() throws URISyntaxException, IOException {
         List<String> lines = getLines("companies");
-        for (Company company : Company.findAllCompanys()) {
-            company.remove();
-        }
-
         List<Location> locations = Location.findAllLocations();
 
         int i = 0;
@@ -85,12 +102,13 @@ public class Populate {
         }
     }
 
-    static void loadNames() throws URISyntaxException, IOException {
-        List<String> lines = getLines("names");
-        for (Applicant applicant : Applicant.findAllApplicants()) {
-            applicant.remove();
-        }
+    public void loadApplicants() throws URISyntaxException, IOException {
+        loadApplicants(0, 10000);
+    }
 
+    @Transactional
+    public void loadApplicants(int start, int end) throws URISyntaxException, IOException {
+        List<String> lines = getLines("names").subList(start, end);
         int count = 0;
         for (String line : lines) {
             String[] split = line.split("\t");
@@ -106,7 +124,8 @@ public class Populate {
         }
     }
 
-    static void loadTags() throws URISyntaxException, IOException {
+    @Transactional
+    public void loadTags() throws URISyntaxException, IOException {
         List<String> lines = getLines("jobs");
         for (Tag tag : Tag.findAllTags()) {
             tag.remove();
@@ -121,11 +140,9 @@ public class Populate {
         }
     }
 
-    static void loadLocations() throws URISyntaxException, IOException {
+    @Transactional
+    public void loadLocations() throws URISyntaxException, IOException {
         List<String> lines = getLines("countries");
-        for (Location location : Location.findAllLocations()) {
-            location.remove();
-        }
         for (String name : lines) {
             if (name.length() < 2)
                 continue;
