@@ -33,7 +33,7 @@ public class PopulateTest {
 
     @Test
     public void loadsDataFromFiles() throws Exception {
-        int poolSize = Runtime.getRuntime().availableProcessors() * 2;
+        int poolSize = Runtime.getRuntime().availableProcessors();
         ExecutorService executor = Executors.newFixedThreadPool(poolSize);
         //        The following could be run in a while loop for microbenchmarking purposes
         LOGGER.info("Populate Test");
