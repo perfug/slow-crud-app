@@ -10,6 +10,7 @@
     <description>Had One Dissmissal Parent Pom</description>
 
     <modules>
+        <module>crud-common</module>
         <module>auth-service</module>
         <module>had_one_dismissal</module>
     </modules>

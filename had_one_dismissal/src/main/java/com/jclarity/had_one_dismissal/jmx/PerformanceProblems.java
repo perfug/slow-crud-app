@@ -2,6 +2,9 @@ package com.jclarity.had_one_dismissal.jmx;
 
 import org.springframework.stereotype.Component;
 
+import com.jclarity.crud_common.api.PerformanceProblemsMXBean;
+import com.jclarity.crud_common.jmx.JMXComponent;
+
 @Component
 public class PerformanceProblems extends JMXComponent implements PerformanceProblemsMXBean {
 
