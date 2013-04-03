@@ -43,7 +43,7 @@ public class CompanyAndJobController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String save(CompanyAndJob object, Model uiModel) {
+    public synchronized String save(CompanyAndJob object, Model uiModel) {
         Company company = object.getCompany();
         JobListing job = object.getJob();
 
