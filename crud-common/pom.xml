@@ -10,4 +10,9 @@
 
     <name>Crud Common</name>
     <description>Common code for slow crud app</description>
+    
+    <properties>
+      <maven.compiler.source>1.5</maven.compiler.source>
+      <maven.compiler.target>1.5</maven.compiler.target>
+    </properties>
 </project>
