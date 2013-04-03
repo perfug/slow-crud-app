@@ -7,9 +7,9 @@ import org.apache.http.client.fluent.Request;
 import org.apache.http.message.BasicNameValuePair;
 
 public class HODApi {
-    private static String HOST = "127.0.0.1";
+    private static String HOST = System.getProperty("host", "127.0.0.1");
 
-    private static String PORT = "8080";
+    private static String PORT = System.getProperty("port","8080");
 
     private static String URL = "http://" + HOST + ":" + PORT + "/had_one_dismissal/";
 
