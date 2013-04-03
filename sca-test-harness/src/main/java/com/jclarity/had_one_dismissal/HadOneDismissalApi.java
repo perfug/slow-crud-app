@@ -6,7 +6,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.message.BasicNameValuePair;
 
-public class HODApi {
+public class HadOneDismissalApi {
     private static String HOST = System.getProperty("host", "127.0.0.1");
 
     private static String PORT = System.getProperty("port","8080");
