@@ -35,7 +35,7 @@ public class PopulateTest {
     public void loadsDataFromFiles() throws Exception {
         int poolSize = Runtime.getRuntime().availableProcessors();
         ExecutorService executor = Executors.newFixedThreadPool(poolSize);
-        //        The following could be run in a while loop for microbenchmarking purposes
+        // The following could be run in a while loop for microbenchmarking purposes
         LOGGER.info("Populate Test");
         long total = System.currentTimeMillis();
         long time = total;

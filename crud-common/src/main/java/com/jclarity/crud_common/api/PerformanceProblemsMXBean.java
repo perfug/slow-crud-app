@@ -1,4 +1,4 @@
-package com.jclarity.had_one_dismissal.jmx;
+package com.jclarity.crud_common.api;
 
 public interface PerformanceProblemsMXBean {
 
