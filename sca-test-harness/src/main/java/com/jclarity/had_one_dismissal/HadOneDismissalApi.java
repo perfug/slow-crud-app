@@ -23,8 +23,12 @@ public class HadOneDismissalApi {
 
     private final BasicCookieStore cookies;
 
+    private final Executor executor;
+
     public HadOneDismissalApi() {
         this.cookies = new BasicCookieStore();
+        this.executor = Executor.newInstance()
+                                 .cookieStore(cookies);
     }
 
     private static String companyAndJobByJobId(int id) {
@@ -63,9 +67,7 @@ public class HadOneDismissalApi {
     }
 
     private Response executeWithCookieStore(Request request) throws ClientProtocolException, IOException {
-        return Executor.newInstance()
-                        .cookieStore(cookies)
-                        .execute(request);
+        return executor.execute(request);
     }
     
 }
