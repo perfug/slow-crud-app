@@ -9,7 +9,6 @@ public class SwitchableDataSource extends AbstractRoutingDataSource {
 
     @Override
     protected Object determineCurrentLookupKey() {
-        System.out.println("DB = " + problems.getDatabaseType());
         return problems.getDatabaseType();
     }
 
