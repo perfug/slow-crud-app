@@ -9,7 +9,7 @@ import com.jclarity.had_one_dismissal.HadOneDismissalApi;
 
 public class CpuLoadExercise extends Exercise {
 
-    class LoginAndOut implements Runnable {
+    class PopulateDb implements Runnable {
         @Override
         public void run() {
             HadOneDismissalApi hadOneDismissalApi = new HadOneDismissalApi();
@@ -28,6 +28,6 @@ public class CpuLoadExercise extends Exercise {
     @Override
     public void runExercise() {
         isRunning = true;
-        threadPool.execute(new LoginAndOut());
+        threadPool.execute(new PopulateDb());
     }
 }
