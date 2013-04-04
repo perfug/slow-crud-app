@@ -16,4 +16,8 @@ public interface PerformanceProblemsMXBean {
 
     public void setBatchingDBQueries(boolean batching);
 
+    public Database getDatabaseType();
+
+    public void setDatabaseType(Database database);
+
 }

@@ -1,0 +1,3 @@
+
+echo "CREATE USER had_one_dismissal WITH PASSWORD 'lei0Ie0d';" | sudo -u postgres psql 
+echo "CREATE DATABASE had_one_dismissal OWNER had_one_dismissal" | sudo -u postgres psql

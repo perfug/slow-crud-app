@@ -47,11 +47,11 @@
         <context:exclude-filter expression=".*_Roo_.*" type="regex"/>
         <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
     </context:component-scan>
-    <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
-        <property name="driverClassName" value="${database.driverClassName}"/>
-        <property name="url" value="${database.url}"/>
-        <property name="username" value="${database.username}"/>
-        <property name="password" value="${database.password}"/>
+    <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="memoryDataSource">
+        <property name="driverClassName" value="${memory_database.driverClassName}"/>
+        <property name="url" value="${memory_database.url}"/>
+        <property name="username" value="${memory_database.username}"/>
+        <property name="password" value="${memory_database.password}"/>
         <property name="testOnBorrow" value="true"/>
         <property name="testOnReturn" value="true"/>
         <property name="testWhileIdle" value="true"/>
@@ -59,6 +59,28 @@
         <property name="numTestsPerEvictionRun" value="3"/>
         <property name="minEvictableIdleTimeMillis" value="1800000"/>
     </bean>
+    <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="daemonDataSource">
+        <property name="driverClassName" value="${daemon_database.driverClassName}"/>
+        <property name="url" value="${daemon_database.url}"/>
+        <property name="username" value="${daemon_database.username}"/>
+        <property name="password" value="${daemon_database.password}"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="testOnReturn" value="true"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="timeBetweenEvictionRunsMillis" value="1800000"/>
+        <property name="numTestsPerEvictionRun" value="3"/>
+        <property name="minEvictableIdleTimeMillis" value="1800000"/>
+    </bean>
+    <bean id="dataSource" class="com.jclarity.had_one_dismissal.jmx.SwitchableDataSource">
+        <property name="targetDataSources">
+            <map key-type="com.jclarity.crud_common.api.Database">
+                <entry key="IN_MEMORY" value-ref="memoryDataSource" />
+                <entry key="EXTERNAL_DAEMON" value-ref="daemonDataSource" />
+            </map>
+        </property>
+        <property name="defaultTargetDataSource" ref="memoryDataSource" />
+    </bean>
+
     <bean id="mailSender" class="com.jclarity.had_one_dismissal.stubs.DummyMailSenderImpl">
     </bean>
     <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
