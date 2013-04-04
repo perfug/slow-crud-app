@@ -8,10 +8,6 @@ public interface PerformanceProblemsMXBean {
 
     public void setDeadlockEnabled(boolean enabled);
 
-    public boolean isCallingRestService();
-
-    public void setCallingRestService(boolean calling);
-
     public boolean isBatchingDBQueries();
 
     public void setBatchingDBQueries(boolean batching);

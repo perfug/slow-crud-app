@@ -14,12 +14,13 @@ public class PerformanceProblems extends JMXComponent implements PerformanceProb
     @Autowired private LocalContainerEntityManagerFactoryBean entityManagerFactory;
 
     private boolean deadlockEnabled;
-    private boolean callingRestService;
     private boolean batchingDBQueries;
     private Database database;
 
     public PerformanceProblems() throws Exception {
-        register(PerformanceProblemsMXBean.ADDRESS);
+        register(ADDRESS);
+        deadlockEnabled = true;
+        batchingDBQueries = true;
         database = Database.IN_MEMORY;
     }
 
@@ -31,16 +32,6 @@ public class PerformanceProblems extends JMXComponent implements PerformanceProb
     @Override
     public void setDeadlockEnabled(boolean enabled) {
         deadlockEnabled = enabled;
-    }
-
-    @Override
-    public boolean isCallingRestService() {
-        return callingRestService;
-    }
-
-    @Override
-    public void setCallingRestService(boolean calling) {
-        callingRestService = calling;
     }
 
     @Override
