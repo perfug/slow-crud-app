@@ -2,8 +2,12 @@ package com.jclarity.had_one_dismissal;
 
 import java.io.IOException;
 
+import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
+import org.apache.http.client.fluent.Response;
+import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.message.BasicNameValuePair;
 
 public class HadOneDismissalApi {
@@ -14,6 +18,18 @@ public class HadOneDismissalApi {
     private static String URL = "http://" + HOST + ":" + PORT + "/had_one_dismissal/";
 
     private static String COMPANY_JOB_URL = URL + "companyandjob";
+    private static String LOGIN_URL       = URL + "resources/j_spring_security_check";
+    private static String LOGOUT_URL      = URL + "resources/j_spring_security_logout";
+
+    private final BasicCookieStore cookies;
+
+    private final Executor executor;
+
+    public HadOneDismissalApi() {
+        this.cookies = new BasicCookieStore();
+        this.executor = Executor.newInstance()
+                                 .cookieStore(cookies);
+    }
 
     private static String companyAndJobByJobId(int id) {
         return COMPANY_JOB_URL + "/" + id;
@@ -35,4 +51,23 @@ public class HadOneDismissalApi {
         Request .Delete(companyAndJobByJobId(id))
                 .execute();
     }
+
+    public void login(String username, String password) throws ClientProtocolException, IOException {
+        Request request = Request.Post(LOGIN_URL)
+                                 .bodyForm(new BasicNameValuePair("j_username", username),
+                                           new BasicNameValuePair("j_password", password));
+
+        executeWithCookieStore(request);
+    }
+
+    public StatusLine logout() throws ClientProtocolException, IOException {
+        return executeWithCookieStore(Request.Get(LOGOUT_URL))
+                .returnResponse()
+                .getStatusLine();
+    }
+
+    private Response executeWithCookieStore(Request request) throws ClientProtocolException, IOException {
+        return executor.execute(request);
+    }
+    
 }

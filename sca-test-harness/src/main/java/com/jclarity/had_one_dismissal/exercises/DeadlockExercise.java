@@ -1,9 +1,12 @@
-package com.jclarity.had_one_dismissal;
+package com.jclarity.had_one_dismissal.exercises;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.http.client.ClientProtocolException;
+
+import com.jclarity.had_one_dismissal.Exercise;
+import com.jclarity.had_one_dismissal.HadOneDismissalApi;
 
 /**
  * Performs two tasks, creating job/company listing then deleting it
@@ -18,10 +21,6 @@ public class DeadlockExercise extends Exercise {
     private static final int ENQUEUE_JOBS_COUNT = 2;
     private static final int DELETE_JOBS_COUNT = 2;
 
-    public static void main(String[] args) throws InterruptedException {
-        new DeadlockExercise().runExercise();
-    }
-
     public DeadlockExercise() {
         super();
         companyCreatedCount = new AtomicInteger(0);
@@ -29,8 +28,9 @@ public class DeadlockExercise extends Exercise {
     }
 
     class CreateCompanyAndJob implements Runnable {
+        @Override
         public void run() {
-            while (true) {
+            while (isRunning) {
                 try {
                     hadOneDismissalApi.createCompanyAndJob("wang", "head of awesome", 3, 4, "sdfettre");
                     companyCreatedCount.incrementAndGet();
@@ -44,8 +44,9 @@ public class DeadlockExercise extends Exercise {
     }
 
     class DeleteCompanyAndJob implements Runnable {
+        @Override
         public void run() {
-            while (true) {
+            while (isRunning) {
                 try {
                     // a race condition here that can lead to a record failing to be deleted
                     // not a big issue
@@ -65,6 +66,7 @@ public class DeadlockExercise extends Exercise {
         }
     }
 
+    @Override
     public void runExercise() {
         for (int i = 0; i < ENQUEUE_JOBS_COUNT; i++) {
             threadPool.execute(new CreateCompanyAndJob());
