@@ -20,6 +20,7 @@ public class HadOneDismissalApi {
     private static String COMPANY_JOB_URL = URL + "companyandjob";
     private static String LOGIN_URL       = URL + "resources/j_spring_security_check";
     private static String LOGOUT_URL      = URL + "resources/j_spring_security_logout";
+    private static String POPULATE_DB     = URL + "populate/index";
 
     private final BasicCookieStore cookies;
 
@@ -64,6 +65,11 @@ public class HadOneDismissalApi {
         return executeWithCookieStore(Request.Get(LOGOUT_URL))
                 .returnResponse()
                 .getStatusLine();
+    }
+    
+
+    public void populateDb() throws ClientProtocolException, IOException {
+        Request.Get(POPULATE_DB).execute();
     }
 
     private Response executeWithCookieStore(Request request) throws ClientProtocolException, IOException {
