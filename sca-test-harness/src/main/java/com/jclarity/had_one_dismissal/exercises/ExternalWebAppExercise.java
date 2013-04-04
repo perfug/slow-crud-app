@@ -1,19 +1,19 @@
-package com.jclarity.had_one_dismissal;
+package com.jclarity.had_one_dismissal.exercises;
 
 import java.io.IOException;
 
 import org.apache.http.client.ClientProtocolException;
 
+import com.jclarity.had_one_dismissal.Exercise;
+import com.jclarity.had_one_dismissal.HadOneDismissalApi;
+
 public class ExternalWebAppExercise extends Exercise {
 
-    public static void main(String[] args) throws InterruptedException {
-        new ExternalWebAppExercise().runExercise();
-    }
-
     class LoginAndOut implements Runnable {
+        @Override
         public void run() {
             HadOneDismissalApi hadOneDismissalApi = new HadOneDismissalApi();
-            while (true) {
+            while (isRunning) {
                 try {
                     hadOneDismissalApi.login("foo", "bar");
                     hadOneDismissalApi.logout();
@@ -26,7 +26,9 @@ public class ExternalWebAppExercise extends Exercise {
         }
     }
 
+    @Override
     public void runExercise() {
+        isRunning = true;
         for (int i = 0; i < threadPool.getCorePoolSize(); i++) {
             threadPool.execute(new LoginAndOut());
         }
