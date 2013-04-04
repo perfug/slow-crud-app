@@ -18,7 +18,7 @@ public abstract class Exercise {
                 exercise.runExercise(timeLimitInMs);
             }
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-            e.printStackTrace();
+            throw new RuntimeException("failed to load exercise", e);
         }
     }
 
