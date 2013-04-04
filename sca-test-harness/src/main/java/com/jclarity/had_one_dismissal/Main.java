@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.GnuParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
@@ -23,7 +24,7 @@ public class Main {
         options.addOption("c", true, "single class to run");
         options.addOption("t", true, "time limit to run for");
 
-        CommandLine cmd = new BasicParser().parse(options, args);
+        CommandLine cmd = new GnuParser().parse(options, args);
 
         if (cmd.hasOption("f")) {
             runFromCsv(cmd.getOptionValue("f"));
@@ -38,12 +39,10 @@ public class Main {
     }
 
     public static void runFromCsv(String csvFile) throws IOException {
-        CSVReader reader = new CSVReader(new FileReader(csvFile));
+
         List<String[]> exercises;
-        try {
+        try (CSVReader reader = new CSVReader(new FileReader(csvFile))) {
             exercises = reader.readAll();
-        } finally {
-            reader.close();
         }
 
         while (true) {
