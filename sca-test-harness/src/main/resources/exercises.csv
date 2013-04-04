@@ -1,2 +1,3 @@
-com.jclarity.had_one_dismissal.exercises.DeadlockExercise,10000
-com.jclarity.had_one_dismissal.exercises.ExternalWebAppExercise,10000
+com.jclarity.had_one_dismissal.exercises.DeadlockExercise,60000
+com.jclarity.had_one_dismissal.exercises.ExternalWebAppExercise,60000
+com.jclarity.had_one_dismissal.exercises.CpuLoadExercise,60000
