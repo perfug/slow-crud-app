@@ -12,12 +12,9 @@ import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
 
 import com.google.common.io.Closeables;
-import com.jclarity.crud_common.api.PerformanceProblemsMXBean;
 import com.jclarity.had_one_dismissal.HadOneDismissalApi;
 
 public abstract class JMXConnection implements Closeable {
-    private static final String MXBEAN_NAME = "com.jclarity.had_one_dismissal:type=PerformanceProblems";
-
     protected static final String JMX_SERVER_HOST = HadOneDismissalApi.HOST;
 
     private final String name;
@@ -39,10 +36,6 @@ public abstract class JMXConnection implements Closeable {
         } catch (MalformedObjectNameException e) {
             throw new JMXConnectionError(name, e);
         }
-    }
-
-    public PerformanceProblemsMXBean getPerformanceProblemBean() throws JMXConnectionError {
-        return getBean(MXBEAN_NAME, PerformanceProblemsMXBean.class);
     }
 
     private MBeanServerConnection connect() throws JMXConnectionError {
