@@ -78,12 +78,12 @@ public class DeadlockExercise extends Exercise {
     }
 
     @Override
-    public void setup() {
+    public void init() {
         performanceProblemsMXBean.setDeadlockEnabled(true);
     }
 
     @Override
-    public void tearDown() {
+    public void reset() {
         performanceProblemsMXBean.setDeadlockEnabled(false);
     }
 

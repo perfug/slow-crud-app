@@ -18,43 +18,39 @@ public abstract class JMXConnection implements Closeable {
     protected static final String JMX_SERVER_HOST = HadOneDismissalApi.HOST;
 
     private final String name;
-    private final String host;
-    private final int port;
 
     private JMXConnector cachedConnector;
 
     public JMXConnection(String host, int port) {
-        this.host = host;
-        this.port = port;
         this.name = host + ":" + port;
     }
 
-    protected <BeanType> BeanType getBean(String mxbeanName, Class<BeanType> clazz) throws JMXConnectionError {
+    protected <BeanType> BeanType getBean(String mxbeanName, Class<BeanType> clazz) throws JMXConnectionException {
         try {
             MBeanServerConnection connection = connect();
             return JMX.newMXBeanProxy(connection, new ObjectName(mxbeanName), clazz);
         } catch (MalformedObjectNameException e) {
-            throw new JMXConnectionError(name, e);
+            throw new JMXConnectionException(name, e);
         }
     }
 
-    private MBeanServerConnection connect() throws JMXConnectionError {
+    private MBeanServerConnection connect() throws JMXConnectionException {
         if (cachedConnector != null) {
             try {
                 return cachedConnector.getMBeanServerConnection();
             } catch (IOException e) {
-                throw new JMXConnectionError(name, e);
+                throw new JMXConnectionException(name, e);
             }
         }
 
         try {
-            JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + host + ":" + port + "/jmxrmi");
+            JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + name + "/jmxrmi");
             JMXConnector connector = JMXConnectorFactory.connect(url);
             connector.connect();
             this.cachedConnector = connector;
             return cachedConnector.getMBeanServerConnection();
         } catch (IOException e) {
-            throw new JMXConnectionError(name, e);
+            throw new JMXConnectionException(name, e);
         }
     }
 

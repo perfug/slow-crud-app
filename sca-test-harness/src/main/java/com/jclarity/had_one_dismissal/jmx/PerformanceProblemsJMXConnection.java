@@ -10,7 +10,7 @@ public class PerformanceProblemsJMXConnection extends JMXConnection {
         super(JMX_SERVER_HOST, JMX_HAD_ONE_DISMISSAL_SERVER_PORT);
     }
 
-    public PerformanceProblemsMXBean getPerformanceProblemsMXBean() throws JMXConnectionError {
+    public PerformanceProblemsMXBean getPerformanceProblemsMXBean() throws JMXConnectionException {
         return getBean(PerformanceProblemsMXBean.ADDRESS, PerformanceProblemsMXBean.class);
     }
 

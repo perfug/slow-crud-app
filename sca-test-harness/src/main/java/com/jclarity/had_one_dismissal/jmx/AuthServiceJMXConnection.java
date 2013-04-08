@@ -9,7 +9,7 @@ public class AuthServiceJMXConnection extends JMXConnection {
         super(JMX_SERVER_HOST, JMX_AUTH_SERVER_PORT);
     }
 
-    public AuthServicePerformanceVariablesMXBean getAuthServicePerformanceVariables() throws JMXConnectionError {
+    public AuthServicePerformanceVariablesMXBean getAuthServicePerformanceVariables() throws JMXConnectionException {
         return getBean(AuthServicePerformanceVariablesMXBean.ADDRESS, AuthServicePerformanceVariablesMXBean.class);
     }
 

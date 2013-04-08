@@ -33,14 +33,14 @@ public abstract class Exercise {
     }
 
     protected void stop() {
-        tearDown();
+        reset();
         isRunning = false;
         threadPool.shutdownNow();
         jmxConnection.close();
     }
 
     public void runExercise(long timeLimitInMs) {
-        setup();
+        init();
         runExercise();
         long end = System.currentTimeMillis() + timeLimitInMs;
         while (isRunning && System.currentTimeMillis() < end) {
@@ -55,9 +55,9 @@ public abstract class Exercise {
 
     public abstract void runExercise();
 
-    public void setup() {
+    public void init() {
     };
 
-    public void tearDown() {
+    public void reset() {
     };
 }
