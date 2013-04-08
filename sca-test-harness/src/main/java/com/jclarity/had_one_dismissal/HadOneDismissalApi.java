@@ -11,7 +11,7 @@ import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.message.BasicNameValuePair;
 
 public class HadOneDismissalApi {
-    private static String HOST = System.getProperty("host", "127.0.0.1");
+    public static String HOST = System.getProperty("host", "127.0.0.1");
 
     private static String PORT = System.getProperty("port","8080");
 

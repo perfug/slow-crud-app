@@ -2,12 +2,17 @@ package com.jclarity.had_one_dismissal;
 
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
+import com.jclarity.crud_common.api.PerformanceProblemsMXBean;
+import com.jclarity.had_one_dismissal.jmx.JMXConnection;
+
 public abstract class Exercise {
 
     protected final ScheduledThreadPoolExecutor threadPool;
     private static final int THREAD_POOL_SIZE = Runtime.getRuntime().availableProcessors();
 
     protected volatile boolean isRunning = true;
+    protected PerformanceProblemsMXBean performanceProblemsMXBean;
+    private JMXConnection jmxConnection;
 
     public static void runExercise(String clazzName, long timeLimitInMs) {
         try {
@@ -24,14 +29,18 @@ public abstract class Exercise {
 
     public Exercise() {
         threadPool = new ScheduledThreadPoolExecutor(THREAD_POOL_SIZE);
+        jmxConnection = new JMXConnection();
     }
 
     protected void stop() {
+        tearDown();
         isRunning = false;
         threadPool.shutdownNow();
+        jmxConnection.close();
     }
 
     public void runExercise(long timeLimitInMs) {
+        setup();
         runExercise();
         long end = System.currentTimeMillis() + timeLimitInMs;
         while (isRunning && System.currentTimeMillis() < end) {
@@ -45,4 +54,10 @@ public abstract class Exercise {
     }
 
     public abstract void runExercise();
+
+    public void setup() {
+    };
+
+    public void tearDown() {
+    };
 }

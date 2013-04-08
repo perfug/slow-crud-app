@@ -77,4 +77,14 @@ public class DeadlockExercise extends Exercise {
         }
     }
 
+    @Override
+    public void setup() {
+        performanceProblemsMXBean.setDeadlockEnabled(true);
+    }
+
+    @Override
+    public void tearDown() {
+        performanceProblemsMXBean.setDeadlockEnabled(false);
+    }
+
 }
