@@ -3,7 +3,7 @@ package com.jclarity.had_one_dismissal;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 import com.jclarity.crud_common.api.PerformanceProblemsMXBean;
-import com.jclarity.had_one_dismissal.jmx.JMXConnection;
+import com.jclarity.had_one_dismissal.jmx.PerformanceProblemsJMXConnection;
 
 public abstract class Exercise {
 
@@ -12,7 +12,7 @@ public abstract class Exercise {
 
     protected volatile boolean isRunning = true;
     protected PerformanceProblemsMXBean performanceProblemsMXBean;
-    private JMXConnection jmxConnection;
+    private PerformanceProblemsJMXConnection jmxConnection;
 
     public static void runExercise(String clazzName, long timeLimitInMs) {
         try {
@@ -29,7 +29,7 @@ public abstract class Exercise {
 
     public Exercise() {
         threadPool = new ScheduledThreadPoolExecutor(THREAD_POOL_SIZE);
-        jmxConnection = new JMXConnection();
+        jmxConnection = new PerformanceProblemsJMXConnection();
     }
 
     protected void stop() {
