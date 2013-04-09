@@ -14,4 +14,21 @@
         <module>auth-service</module>
         <module>had_one_dismissal</module>
     </modules>
+
+    <scm>
+        <developerConnection>scm:git:git@github.com:jClarity/slow-crud-app.git</developerConnection>
+        <url>https://github.com/jClarity/slow-crud-app</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>jclarity-central</id>
+            <url>http://ci.jclarity.com:8081/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>jclarity-central</id>
+            <url>http://ci.jclarity.com:8081/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
