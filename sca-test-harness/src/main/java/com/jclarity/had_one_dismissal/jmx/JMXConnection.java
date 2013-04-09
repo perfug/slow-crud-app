@@ -12,7 +12,7 @@ import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
 
 import com.google.common.io.Closeables;
-import com.jclarity.had_one_dismissal.HadOneDismissalApi;
+import com.jclarity.had_one_dismissal.api.HadOneDismissalApi;
 
 public abstract class JMXConnection implements Closeable {
     protected static final String JMX_SERVER_HOST = HadOneDismissalApi.HOST;

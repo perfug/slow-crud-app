@@ -1,4 +1,4 @@
-package com.jclarity.had_one_dismissal;
+package com.jclarity.had_one_dismissal.api;
 
 import java.io.IOException;
 
@@ -66,7 +66,6 @@ public class HadOneDismissalApi {
                 .returnResponse()
                 .getStatusLine();
     }
-    
 
     public void populateDb() throws ClientProtocolException, IOException {
         Request.Get(POPULATE_DB).execute();
@@ -75,5 +74,5 @@ public class HadOneDismissalApi {
     private Response executeWithCookieStore(Request request) throws ClientProtocolException, IOException {
         return executor.execute(request);
     }
-    
+
 }

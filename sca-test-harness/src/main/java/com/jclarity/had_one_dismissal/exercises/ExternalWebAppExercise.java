@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.apache.http.client.ClientProtocolException;
 
 import com.jclarity.had_one_dismissal.Exercise;
-import com.jclarity.had_one_dismissal.HadOneDismissalApi;
+import com.jclarity.had_one_dismissal.api.HadOneDismissalApi;
 
 public class ExternalWebAppExercise extends Exercise {
 
