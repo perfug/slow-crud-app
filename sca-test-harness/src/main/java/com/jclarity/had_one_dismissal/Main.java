@@ -2,6 +2,7 @@ package com.jclarity.had_one_dismissal;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.cli.CommandLine;
@@ -30,7 +31,7 @@ public class Main {
         } else if (cmd.hasOption("c")) {
             String exercise = cmd.getOptionValue("c");
             long timeLimit = Long.parseLong(cmd.getOptionValue("t"));
-            Exercise.runExercise(exercise, timeLimit);
+            Exercise.runExercise(exercise, timeLimit, new String[0]);
         } else {
             HelpFormatter formatter = new HelpFormatter();
             formatter.printHelp("Main", options);
@@ -38,7 +39,6 @@ public class Main {
     }
 
     public static void runFromCsv(String csvFile) throws IOException {
-
         List<String[]> exercises;
         try (CSVReader reader = new CSVReader(new FileReader(csvFile))) {
             exercises = reader.readAll();
@@ -46,10 +46,12 @@ public class Main {
 
         while (true) {
             for (String[] exercise : exercises) {
-                if (exercise.length >= 2) {
-                    LOGGER.info("Running {} for {}", exercise[0], exercise[1]);
-                    Exercise.runExercise(exercise[0], Long.parseLong(exercise[1]));
-                }
+                if (exercise.length < 2)
+                    continue;
+
+                LOGGER.info("Running {} for {}", exercise[0], exercise[1]);
+                String[] arguments = Arrays.copyOfRange(exercise, 2, exercise.length);
+                Exercise.runExercise(exercise[0], Long.parseLong(exercise[1]), arguments);
             }
         }
     }
