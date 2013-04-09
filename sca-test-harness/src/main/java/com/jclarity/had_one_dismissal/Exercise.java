@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 import com.jclarity.crud_common.api.PerformanceProblemsMXBean;
+import com.jclarity.had_one_dismissal.api.HadOneDismissalApi;
 import com.jclarity.had_one_dismissal.jmx.PerformanceProblemsJMXConnection;
 
 public abstract class Exercise {
@@ -12,9 +13,11 @@ public abstract class Exercise {
 
     private static final int THREAD_POOL_SIZE = Runtime.getRuntime().availableProcessors();
 
+    private final PerformanceProblemsJMXConnection jmxConnection;
+    private final HadOneDismissalApi hadOneDismissalApi;
+
     protected volatile boolean isRunning = true;
     protected PerformanceProblemsMXBean performanceProblemsMXBean;
-    private final PerformanceProblemsJMXConnection jmxConnection;
 
     public static void runExercise(String clazzName, long timeLimitInMs, String[] arguments) {
         try {
@@ -29,12 +32,14 @@ public abstract class Exercise {
         }
     }
 
-    private static Exercise newInstance(Class<? extends Exercise> type, String[] arguments) throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException {
+    private static Exercise newInstance(Class<? extends Exercise> type, String[] arguments)
+            throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException {
+
         if (arguments.length == 0)
             return type.newInstance();
 
-        return type.getConstructor(arguments.getClass())
-                   .newInstance((Object[]) arguments);
+        return (Exercise) type.getConstructors()[0]
+                              .newInstance((Object[]) arguments);
     }
 
     public Exercise() {
@@ -44,6 +49,7 @@ public abstract class Exercise {
     public Exercise(int poolSize) {
         threadPool = new ScheduledThreadPoolExecutor(poolSize);
         jmxConnection = new PerformanceProblemsJMXConnection();
+        hadOneDismissalApi = new HadOneDismissalApi();
     }
 
     protected void stop() {
@@ -67,11 +73,19 @@ public abstract class Exercise {
         stop();
     }
 
+    public boolean isRunning() {
+        return isRunning;
+    }
+
     public abstract void runExercise();
 
     public void init() {
-    };
+    }
 
     public void reset() {
-    };
+    }
+
+    public HadOneDismissalApi getHadOneDismissalApi() {
+        return hadOneDismissalApi;
+    }
 }
