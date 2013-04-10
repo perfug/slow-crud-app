@@ -13,13 +13,13 @@ public class InterprocessContextSwitchingExercise extends CompanyAndJobExercise 
 
     @Override
     public void init() {
-        performanceProblemsMXBean.setDeadlockEnabled(false);
-        performanceProblemsMXBean.setDatabaseType(EXTERNAL_DAEMON);
+        performanceProblems.setDeadlockEnabled(false);
+        performanceProblems.setDatabaseType(EXTERNAL_DAEMON);
     }
 
     @Override
     public void reset() {
-        performanceProblemsMXBean.setDatabaseType(IN_MEMORY);
+        performanceProblems.setDatabaseType(IN_MEMORY);
     }
 
 }

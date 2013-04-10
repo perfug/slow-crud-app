@@ -29,7 +29,7 @@ public class ExternalWebAppExercise extends Exercise {
     @Override
     public void runExercise() {
         isRunning = true;
-        for (int i = 0; i < threadPool.getCorePoolSize(); i++) {
+        for (int i = 0; i < poolSize; i++) {
             threadPool.execute(new LoginAndOut());
         }
     }

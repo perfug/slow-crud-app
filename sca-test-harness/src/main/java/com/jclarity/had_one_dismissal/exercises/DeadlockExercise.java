@@ -12,12 +12,12 @@ public class DeadlockExercise extends CompanyAndJobExercise {
 
     @Override
     public void init() {
-        performanceProblemsMXBean.setDeadlockEnabled(true);
+        performanceProblems.setDeadlockEnabled(true);
     }
 
     @Override
     public void reset() {
-        performanceProblemsMXBean.setDeadlockEnabled(false);
+        performanceProblems.setDeadlockEnabled(false);
     }
 
 }
