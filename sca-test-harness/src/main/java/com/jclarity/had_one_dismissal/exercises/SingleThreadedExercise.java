@@ -13,7 +13,7 @@ public class SingleThreadedExercise extends Exercise {
 
     @Override
     public void runExercise() {
-        for (int i = 0; i < threadPool.getCorePoolSize(); i++) {
+        for (int i = 0; i < poolSize; i++) {
             threadPool.execute(new CreateCompanyAndJob(this));
         }
     }
@@ -22,12 +22,12 @@ public class SingleThreadedExercise extends Exercise {
     public void init() {
         // Don't actually cause a deadlock
         // just use its additional blocking to force things to be single threaded
-        performanceProblemsMXBean.setDeadlockEnabled(true);
+        performanceProblems.setDeadlockEnabled(true);
     }
 
     @Override
     public void reset() {
-        performanceProblemsMXBean.setDeadlockEnabled(false);
+        performanceProblems.setDeadlockEnabled(false);
     }
 
 }

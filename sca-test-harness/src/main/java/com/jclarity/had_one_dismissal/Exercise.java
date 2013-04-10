@@ -10,14 +10,12 @@ import com.jclarity.had_one_dismissal.jmx.PerformanceProblemsJMXConnection;
 public abstract class Exercise {
 
     protected final ScheduledThreadPoolExecutor threadPool;
-
-    private static final int THREAD_POOL_SIZE = Runtime.getRuntime().availableProcessors();
-
+    protected final int poolSize;
     private final PerformanceProblemsJMXConnection jmxConnection;
     private final HadOneDismissalApi hadOneDismissalApi;
 
     protected volatile boolean isRunning = true;
-    protected PerformanceProblemsMXBean performanceProblemsMXBean;
+    protected PerformanceProblemsMXBean performanceProblems;
 
     public static void runExercise(String clazzName, long timeLimitInMs, String[] arguments) {
         try {
@@ -43,10 +41,11 @@ public abstract class Exercise {
     }
 
     public Exercise() {
-        this(THREAD_POOL_SIZE);
+        this(Runtime.getRuntime().availableProcessors());
     }
 
     public Exercise(int poolSize) {
+        this.poolSize = poolSize;
         threadPool = new ScheduledThreadPoolExecutor(poolSize);
         jmxConnection = new PerformanceProblemsJMXConnection();
         hadOneDismissalApi = new HadOneDismissalApi();
