@@ -2,20 +2,30 @@ package com.jclarity.had_one_dismissal;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.jclarity.crud_common.api.AuthServicePerformanceVariablesMXBean;
 import com.jclarity.crud_common.api.PerformanceProblemsMXBean;
-import com.jclarity.had_one_dismissal.api.HadOneDismissalApi;
+import com.jclarity.had_one_dismissal.jmx.AuthServiceJMXConnection;
 import com.jclarity.had_one_dismissal.jmx.PerformanceProblemsJMXConnection;
 
 public abstract class Exercise {
 
+    private static Logger LOGGER = LoggerFactory.getLogger(Exercise.class);
+
     protected final ScheduledThreadPoolExecutor threadPool;
     protected final int poolSize;
-    private final PerformanceProblemsJMXConnection jmxConnection;
-    private final HadOneDismissalApi hadOneDismissalApi;
+    protected final PerformanceProblemsMXBean performanceProblems;
+    protected final AuthServicePerformanceVariablesMXBean authServicePerformanceVariables;
+
+    private final PerformanceProblemsJMXConnection appJmxConnection;
+    private final AuthServiceJMXConnection authJmxConnection;
+
 
     protected volatile boolean isRunning = true;
-    protected PerformanceProblemsMXBean performanceProblems;
 
     public static void runExercise(String clazzName, long timeLimitInMs, String[] arguments) {
         try {
@@ -47,19 +57,35 @@ public abstract class Exercise {
     public Exercise(int poolSize) {
         this.poolSize = poolSize;
         threadPool = new ScheduledThreadPoolExecutor(poolSize);
-        jmxConnection = new PerformanceProblemsJMXConnection();
-        hadOneDismissalApi = new HadOneDismissalApi();
+
+        appJmxConnection = new PerformanceProblemsJMXConnection();
+        performanceProblems = appJmxConnection.getPerformanceProblemsMXBean();
+
+        authJmxConnection = new AuthServiceJMXConnection();
+        authServicePerformanceVariables = authJmxConnection.getAuthServicePerformanceVariables();
     }
 
     protected void stop() {
-        reset();
-        isRunning = false;
-        threadPool.shutdownNow();
-        jmxConnection.close();
+        LOGGER.info("Stopping @ " + System.currentTimeMillis());
+        try {
+            reset();
+            isRunning = false;
+            try {
+                threadPool.shutdown();
+                threadPool.awaitTermination(Long.MAX_VALUE, TimeUnit.DAYS);
+            } catch (InterruptedException e) {
+                LOGGER.debug(e.getMessage(), e);
+            }
+        } finally {
+            appJmxConnection.close();
+            authJmxConnection.close();
+        }
+        LOGGER.info("STOPPED @ " + System.currentTimeMillis());
     }
 
     public void runExercise(long timeLimitInMs) {
         init();
+        LOGGER.info("Starting @ " + System.currentTimeMillis());
         runExercise();
         long end = System.currentTimeMillis() + timeLimitInMs;
         while (isRunning && System.currentTimeMillis() < end) {
@@ -84,7 +110,4 @@ public abstract class Exercise {
     public void reset() {
     }
 
-    public HadOneDismissalApi getHadOneDismissalApi() {
-        return hadOneDismissalApi;
-    }
 }

@@ -2,18 +2,21 @@ package com.jclarity.had_one_dismissal.api;
 
 import java.io.IOException;
 
-import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
-import org.apache.http.client.fluent.Response;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.message.BasicNameValuePair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HadOneDismissalApi {
-    public static String HOST = System.getProperty("host", "127.0.0.1");
 
-    private static String PORT = System.getProperty("port","8080");
+    private static Logger LOGGER = LoggerFactory.getLogger(HadOneDismissalApi.class);
+
+    public static String HOST = System.getProperty("jclarity.hod.host", "127.0.0.1");
+
+    private static String PORT = System.getProperty("jclarity.hod.port","8080");
 
     private static String URL = "http://" + HOST + ":" + PORT + "/had_one_dismissal/";
 
@@ -37,23 +40,24 @@ public class HadOneDismissalApi {
     }
 
     public void createCompanyAndJob(String name, String title, int salaryLowerBound, int salaryUpperBound, String description) throws ClientProtocolException, IOException {
-        Request .Post(COMPANY_JOB_URL)
+        LOGGER.debug("createCompanyAndJob");
+        executor.execute(Request .Post(COMPANY_JOB_URL)
                 .bodyForm(new BasicNameValuePair("company.name", name),
-                          new BasicNameValuePair("job.title", title),
-                          new BasicNameValuePair("job.salaryLowerBound", Integer.toString(salaryLowerBound)),
-                          new BasicNameValuePair("job.salaryUpperBound", Integer.toString(salaryUpperBound)),
-                          new BasicNameValuePair("job.description", description))
-                .socketTimeout(1000)
-                .connectTimeout(1000)
-                .execute();
+                        new BasicNameValuePair("job.title", title),
+                        new BasicNameValuePair("job.salaryLowerBound", Integer.toString(salaryLowerBound)),
+                        new BasicNameValuePair("job.salaryUpperBound", Integer.toString(salaryUpperBound)),
+                        new BasicNameValuePair("job.description", description))
+              .socketTimeout(1000)
+              .connectTimeout(1000)).discardContent();
     }
 
     public void deleteCompanyAndJobById(int id) throws ClientProtocolException, IOException {
-        Request .Delete(companyAndJobByJobId(id))
-                .execute();
+        LOGGER.debug("deleteCompanyAndJobById");
+        executor.execute(Request.Delete(companyAndJobByJobId(id))).discardContent();
     }
 
     public void login(String username, String password) throws ClientProtocolException, IOException {
+        LOGGER.debug("login");
         Request request = Request.Post(LOGIN_URL)
                                  .bodyForm(new BasicNameValuePair("j_username", username),
                                            new BasicNameValuePair("j_password", password));
@@ -61,18 +65,18 @@ public class HadOneDismissalApi {
         executeWithCookieStore(request);
     }
 
-    public StatusLine logout() throws ClientProtocolException, IOException {
-        return executeWithCookieStore(Request.Get(LOGOUT_URL))
-                .returnResponse()
-                .getStatusLine();
+    public void logout() throws ClientProtocolException, IOException {
+        LOGGER.debug("logout");
+        executeWithCookieStore(Request.Get(LOGOUT_URL));
     }
 
     public void populateDb() throws ClientProtocolException, IOException {
-        Request.Get(POPULATE_DB).execute();
+        LOGGER.debug("populateDb");
+        executor.execute(Request.Get(POPULATE_DB)).discardContent();
     }
 
-    private Response executeWithCookieStore(Request request) throws ClientProtocolException, IOException {
-        return executor.execute(request);
+    private void executeWithCookieStore(Request request) throws ClientProtocolException, IOException {
+        executor.execute(request).discardContent();
     }
 
 }
