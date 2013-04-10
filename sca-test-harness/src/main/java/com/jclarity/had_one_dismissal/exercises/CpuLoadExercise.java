@@ -1,27 +1,22 @@
 package com.jclarity.had_one_dismissal.exercises;
 
+import static com.jclarity.crud_common.api.Database.EXTERNAL_DAEMON;
+import static com.jclarity.crud_common.api.Database.IN_MEMORY;
 import static java.lang.Integer.parseInt;
 
-import java.io.IOException;
-
-import org.apache.http.client.ClientProtocolException;
-
 import com.jclarity.had_one_dismissal.Exercise;
+import com.jclarity.had_one_dismissal.api.Job;
 
 public class CpuLoadExercise extends Exercise {
 
-    class PopulateDb implements Runnable {
+    class PopulateDb extends Job {
+        public PopulateDb() {
+            super(CpuLoadExercise.this);
+        }
+
         @Override
-        public void run() {
-            while (isRunning) {
-                try {
-                    getHadOneDismissalApi().populateDb();
-                } catch (ClientProtocolException e) {
-                    // Deliberately ignore
-                } catch (IOException e) {
-                    // Deliberately ignore
-                }
-            }
+        protected void runJob() throws Exception {
+            hadOneDismissal.populateDb();
         }
     }
 
@@ -39,11 +34,13 @@ public class CpuLoadExercise extends Exercise {
 
     @Override
     public void init() {
+        performanceProblems.setDatabaseType(EXTERNAL_DAEMON);
         performanceProblems.setBatchingDBQueries(false);
     }
 
     @Override
     public void reset() {
+        performanceProblems.setDatabaseType(IN_MEMORY);
         performanceProblems.setBatchingDBQueries(true);
     }
 
