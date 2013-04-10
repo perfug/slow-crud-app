@@ -49,6 +49,9 @@ public class Main {
                 if (exercise.length < 2)
                     continue;
 
+                if (exercise[0].startsWith("#"))
+                    continue;
+
                 LOGGER.info("Running {} for {}", exercise[0], exercise[1]);
                 String[] arguments = Arrays.copyOfRange(exercise, 2, exercise.length);
                 Exercise.runExercise(exercise[0], Long.parseLong(exercise[1]), arguments);
