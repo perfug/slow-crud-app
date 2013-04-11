@@ -13,8 +13,11 @@ public class RestfulAuthProvider implements UserDetailsService {
     protected static final Log logger = LogFactory.getLog(RestfulAuthProvider.class);
 
     private RestTemplate restTemplate;
-    public static String URL = "http://localhost:9876/auth/webusers";
-    
+
+    private static final String AUTH_HOST = System.getProperty("jclarity.auth.host", "localhost");
+
+    public static String URL = "http://" + AUTH_HOST + ":9876/auth/webusers";
+
     public static WebUser getUser(String user, RestTemplate restTemplate) {
         try {
             return restTemplate.getForObject(URL + "?find=ByUsernameEquals&username=" + user, WebUser.class);
@@ -28,10 +31,10 @@ public class RestfulAuthProvider implements UserDetailsService {
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         return getUser(userName, restTemplate);
     }
-    
-    
+
+
     public void setRestTemplate(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
-    
+
 }
