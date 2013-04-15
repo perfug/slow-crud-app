@@ -93,6 +93,7 @@ public class Populate {
         List<Company> companies = Lists.newArrayList();
         int i = 0;
         for (String line : lines) {
+//            LOGGER.debug(line);
             Company company = new Company();
             Location location = locations.get(i % locations.size());
             company.setLocation(location);
@@ -113,6 +114,7 @@ public class Populate {
         List<String> lines = getLines("names").subList(start, end);
         int count = 0;
         for (String line : lines) {
+//            LOGGER.debug(line);
             String[] split = line.split("\t");
             if (split.length != 2)
                 continue;
@@ -131,6 +133,7 @@ public class Populate {
         List<String> lines = getLines("jobs");
         List<Tag> tags = Lists.newArrayList();
         for (String line : lines) {
+//            LOGGER.debug(line);
             if (line.length() < 2)
                 continue;
 
@@ -148,6 +151,7 @@ public class Populate {
 
         List<Location> locations = Lists.newArrayList();
         for (String name : lines) {
+//            LOGGER.debug(name);
             if (name.length() < 2)
                 continue;
 

@@ -59,8 +59,7 @@ public class PerformanceProblems extends JMXComponent implements PerformanceProb
 
     @Override
     public String getRootLoggingLevel() {
-        Level level = LogManager.getRootLogger().getLevel();
-        return level.toString();
+        return LogManager.getRootLogger().getLevel().toString();
     }
 
     @Override
