@@ -35,13 +35,13 @@ public class CpuLoadExercise extends Exercise {
     @Override
     public void init() {
         performanceProblems.setDatabaseType(EXTERNAL_DAEMON);
-        performanceProblems.setBatchingDBQueries(false);
+        performanceProblems.setSavingDBQueries(false);
     }
 
     @Override
     public void reset() {
         performanceProblems.setDatabaseType(IN_MEMORY);
-        performanceProblems.setBatchingDBQueries(true);
+        performanceProblems.setSavingDBQueries(true);
     }
 
 }

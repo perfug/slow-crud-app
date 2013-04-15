@@ -14,13 +14,13 @@ public class PerformanceProblems extends JMXComponent implements PerformanceProb
     @Autowired private LocalContainerEntityManagerFactoryBean entityManagerFactory;
 
     private boolean deadlockEnabled;
-    private boolean batchingDBQueries;
+    private boolean savingDBQueries;
     private Database database;
 
     public PerformanceProblems() throws Exception {
         register(ADDRESS);
         deadlockEnabled = true;
-        batchingDBQueries = true;
+        savingDBQueries = true;
         database = Database.IN_MEMORY;
     }
 
@@ -35,13 +35,13 @@ public class PerformanceProblems extends JMXComponent implements PerformanceProb
     }
 
     @Override
-    public boolean isBatchingDBQueries() {
-        return batchingDBQueries;
+    public boolean isSavingDBQueries() {
+        return savingDBQueries;
     }
 
     @Override
-    public void setBatchingDBQueries(boolean batching) {
-        batchingDBQueries = batching;
+    public void setSavingDBQueries(boolean saving) {
+        savingDBQueries = saving;
     }
 
     @Override

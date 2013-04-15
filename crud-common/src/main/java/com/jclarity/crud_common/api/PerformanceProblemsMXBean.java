@@ -8,9 +8,9 @@ public interface PerformanceProblemsMXBean {
 
     public void setDeadlockEnabled(boolean enabled);
 
-    public boolean isBatchingDBQueries();
+    public boolean isSavingDBQueries();
 
-    public void setBatchingDBQueries(boolean batching);
+    public void setSavingDBQueries(boolean batching);
 
     public Database getDatabaseType();
 

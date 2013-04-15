@@ -3,6 +3,7 @@ package com.jclarity.had_one_dismissal.web;
 import static org.junit.Assert.assertEquals;
 
 import java.lang.reflect.Method;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -38,15 +39,15 @@ public class PopulateTest {
         long time = total;
         populate.deleteAll();
         time = updateStopwatch(time, "deleteAll");
-        populate.loadLocations();
+        List<Location> locations = populate.loadLocations();
         time = updateStopwatch(time, "loadLocations");
-        populate.loadTags();
+        List<Tag> tags = populate.loadTags();
         time = updateStopwatch(time, "loadTags");
         populate.loadApplicants();
         time = updateStopwatch(time, "loadApplicants");
-        populate.loadCompanies();
+        List<Company> companys = populate.loadCompanies(locations);
         time = updateStopwatch(time, "loadCompanies");
-        populate.loadJobListings();
+        populate.loadJobListings(companys, tags);
         updateStopwatch(time, "loadJobListings");
 
         total = System.currentTimeMillis() - total;

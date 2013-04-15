@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.google.common.collect.Lists;
 import com.jclarity.had_one_dismissal.domain.Applicant;
 import com.jclarity.had_one_dismissal.domain.Company;
 import com.jclarity.had_one_dismissal.domain.JobListing;
@@ -34,14 +35,14 @@ public class Populate {
     @RequestMapping
     public String index() {
         try {
-            if (!problems.isBatchingDBQueries()) {
+            if (problems.isSavingDBQueries())
                 deleteAll();
-                loadLocations();
-                loadTags();
-                loadApplicants();
-                loadCompanies();
-                loadJobListings();
-            }
+
+            List<Location> locations = loadLocations();
+            List<Tag> tags = loadTags();
+            loadApplicants();
+            List<Company> companys = loadCompanies(locations);
+            loadJobListings(companys, tags);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
         }
@@ -68,10 +69,8 @@ public class Populate {
     }
 
     @Transactional
-    public void loadJobListings() {
+    public void loadJobListings(List<Company> companys, List<Tag> tags) {
         String description = "some job description";
-        List<Tag> tags = Tag.findAllTags();
-        List<Company> companys = Company.findAllCompanys();
 
         for (int i = 0; i < tags.size(); i++) {
             JobListing job = new JobListing();
@@ -82,31 +81,34 @@ public class Populate {
             job.setSalaryLowerBound(salary - 10);
             job.setSalaryUpperBound(salary + 10);
             job.setTitle(tags.get(i).getName());
-            job.persist();
+            if (problems.isSavingDBQueries())
+                job.persist();
         }
     }
 
     @Transactional
-    public void loadCompanies() throws URISyntaxException, IOException {
+    public List<Company> loadCompanies(List<Location> locations) throws URISyntaxException, IOException {
         List<String> lines = getLines("companies");
-        List<Location> locations = Location.findAllLocations();
 
+        List<Company> companies = Lists.newArrayList();
         int i = 0;
         for (String line : lines) {
             Company company = new Company();
             Location location = locations.get(i % locations.size());
             company.setLocation(location);
             company.setName(line);
-            company.persist();
+            if (problems.isSavingDBQueries())
+                company.persist();
+            companies.add(company);
             i++;
         }
+        return companies;
     }
 
     public void loadApplicants() throws URISyntaxException, IOException {
         loadApplicants(0, 10000);
     }
 
-    @Transactional
     public void loadApplicants(int start, int end) throws URISyntaxException, IOException {
         List<String> lines = getLines("names").subList(start, end);
         int count = 0;
@@ -119,38 +121,43 @@ public class Populate {
             applicant.setForename(split[0]);
             applicant.setSurname(split[1]);
             applicant.setYearsExperience(count);
-            applicant.persist();
+            if (problems.isSavingDBQueries())
+                applicant.persist();
             count++;
         }
     }
 
-    @Transactional
-    public void loadTags() throws URISyntaxException, IOException {
+    public List<Tag> loadTags() throws URISyntaxException, IOException {
         List<String> lines = getLines("jobs");
-        for (Tag tag : Tag.findAllTags()) {
-            tag.remove();
-        }
+        List<Tag> tags = Lists.newArrayList();
         for (String line : lines) {
             if (line.length() < 2)
                 continue;
 
             Tag tag = new Tag();
             tag.setName(line);
-            tag.persist();
+            if (problems.isSavingDBQueries())
+                tag.persist();
+            tags.add(tag);
         }
+        return tags;
     }
 
-    @Transactional
-    public void loadLocations() throws URISyntaxException, IOException {
+    public List<Location> loadLocations() throws URISyntaxException, IOException {
         List<String> lines = getLines("countries");
+
+        List<Location> locations = Lists.newArrayList();
         for (String name : lines) {
             if (name.length() < 2)
                 continue;
 
             Location location = new Location();
             location.setName(name);
-            location.persist();
+            if (problems.isSavingDBQueries())
+                location.persist();
+            locations.add(location);
         }
+        return locations;
     }
 
     private static List<String> getLines(String filename) throws URISyntaxException, IOException {
