@@ -16,4 +16,8 @@ public interface PerformanceProblemsMXBean {
 
     public void setDatabaseType(Database database);
 
+    public String getRootLoggingLevel();
+
+    public void setRootLoggingLevel(String level);
+
 }
