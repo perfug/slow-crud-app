@@ -8,12 +8,16 @@ public interface PerformanceProblemsMXBean {
 
     public void setDeadlockEnabled(boolean enabled);
 
-    public boolean isBatchingDBQueries();
+    public boolean isSavingDBQueries();
 
-    public void setBatchingDBQueries(boolean batching);
+    public void setSavingDBQueries(boolean batching);
 
     public Database getDatabaseType();
 
     public void setDatabaseType(Database database);
+
+    public String getRootLoggingLevel();
+
+    public void setRootLoggingLevel(String level);
 
 }
