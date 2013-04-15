@@ -1,7 +1,5 @@
 package com.jclarity.had_one_dismissal.exercises;
 
-import static com.jclarity.crud_common.api.Database.EXTERNAL_DAEMON;
-import static com.jclarity.crud_common.api.Database.IN_MEMORY;
 import static java.lang.Integer.parseInt;
 
 import com.jclarity.had_one_dismissal.Exercise;
@@ -34,13 +32,11 @@ public class CpuLoadExercise extends Exercise {
 
     @Override
     public void init() {
-        performanceProblems.setDatabaseType(EXTERNAL_DAEMON);
         performanceProblems.setSavingDBQueries(false);
     }
 
     @Override
     public void reset() {
-        performanceProblems.setDatabaseType(IN_MEMORY);
         performanceProblems.setSavingDBQueries(true);
     }
 
