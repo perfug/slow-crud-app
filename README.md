@@ -1,7 +1,7 @@
 slow-crud-app
 =============
 
-slow-crud-app is a 'typical' Web CRUD App using Spring Roo, Hibernate and other 'typical' enterrpise Java technologies. 
+slow-crud-app is a 'typical' Web CRUD App using Spring, Hibernate and other 'typical' enterrpise Java technologies. 
 It's key purpose is to provide configurable bad performance characteristics through JMX, such as Deadlocks, heavy 
 Disk I/O, heavy Network I/O, CPU trashing etc.
 
@@ -16,12 +16,12 @@ This project is not truly a 'real world' application. It is an experimental proj
 pluggable framework in which to add different performance scenarios such as Deadlocks, waiting on 3rd party resources, 
 Garbage Collection pauses, Disk I/O and much, much more.
 
-There is deliberately badly performing code in slow-crud-app, please do ask on the mailing list first!
+There is deliberately badly performing code in slow-crud-app, please do ask on the Friends of jClarity mailing list first!
 
 How to help
 ===========
 
-Development of slow-crud-app is currently through the "Friends of jClarity" community mailing list. You can sign-up 
+Development of slow-crud-app is currently discussed through the "Friends of jClarity" community mailing list. You can sign-up 
 via http://www.jclarity.com/.
 
 Bad Performance Characteristics
@@ -32,3 +32,30 @@ The following performance characteristics have been implemented:
 * Deadlock
 * Waiting on 3rd party resource (RESTFul call)
 * 
+
+Running slow-crud-app
+=====================
+
+slow-crud-app is a Maven 3 project
+
+mvn clean install
+
+Running slow-crud-app
+=====================
+   
+slow-crud-app is a jetty plugin enabled Maven 3 project and will start on localhost:8080/had_one_dismissal
+
+cd had-one-dismisaal
+mvn jetty:run
+
+Also, you'll want to bring up the 3rd party service
+
+cd auth-service
+mvn jetty:run
+
+TODO: Fix port clash
+
+Configuring slow-crud-app
+=========================
+
+
