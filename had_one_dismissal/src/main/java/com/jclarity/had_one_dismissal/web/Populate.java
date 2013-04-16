@@ -93,7 +93,7 @@ public class Populate {
         List<Company> companies = Lists.newArrayList();
         int i = 0;
         for (String line : lines) {
-//            LOGGER.debug(line);
+            LOGGER.debug(line);
             Company company = new Company();
             Location location = locations.get(i % locations.size());
             company.setLocation(location);
@@ -110,11 +110,12 @@ public class Populate {
         loadApplicants(0, 10000);
     }
 
+    @Transactional
     public void loadApplicants(int start, int end) throws URISyntaxException, IOException {
         List<String> lines = getLines("names").subList(start, end);
         int count = 0;
         for (String line : lines) {
-//            LOGGER.debug(line);
+            LOGGER.debug(line);
             String[] split = line.split("\t");
             if (split.length != 2)
                 continue;
@@ -129,11 +130,12 @@ public class Populate {
         }
     }
 
+    @Transactional
     public List<Tag> loadTags() throws URISyntaxException, IOException {
         List<String> lines = getLines("jobs");
         List<Tag> tags = Lists.newArrayList();
         for (String line : lines) {
-//            LOGGER.debug(line);
+            LOGGER.debug(line);
             if (line.length() < 2)
                 continue;
 
@@ -146,12 +148,13 @@ public class Populate {
         return tags;
     }
 
+    @Transactional
     public List<Location> loadLocations() throws URISyntaxException, IOException {
         List<String> lines = getLines("countries");
 
         List<Location> locations = Lists.newArrayList();
         for (String name : lines) {
-//            LOGGER.debug(name);
+            LOGGER.debug(name);
             if (name.length() < 2)
                 continue;
 
