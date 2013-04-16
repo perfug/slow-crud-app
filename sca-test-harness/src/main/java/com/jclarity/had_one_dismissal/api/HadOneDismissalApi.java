@@ -41,19 +41,19 @@ public class HadOneDismissalApi {
 
     public void createCompanyAndJob(String name, String title, int salaryLowerBound, int salaryUpperBound, String description) throws ClientProtocolException, IOException {
         LOGGER.debug("createCompanyAndJob");
-        executor.execute(Request .Post(COMPANY_JOB_URL)
+        execute(Request .Post(COMPANY_JOB_URL)
                 .bodyForm(new BasicNameValuePair("company.name", name),
                         new BasicNameValuePair("job.title", title),
                         new BasicNameValuePair("job.salaryLowerBound", Integer.toString(salaryLowerBound)),
                         new BasicNameValuePair("job.salaryUpperBound", Integer.toString(salaryUpperBound)),
                         new BasicNameValuePair("job.description", description))
               .socketTimeout(1000)
-              .connectTimeout(1000)).discardContent();
+              .connectTimeout(1000));
     }
 
     public void deleteCompanyAndJobById(int id) throws ClientProtocolException, IOException {
         LOGGER.debug("deleteCompanyAndJobById");
-        executor.execute(Request.Delete(companyAndJobByJobId(id))).discardContent();
+        execute(Request.Delete(companyAndJobByJobId(id)));
     }
 
     public void login(String username, String password) throws ClientProtocolException, IOException {
@@ -62,20 +62,21 @@ public class HadOneDismissalApi {
                                  .bodyForm(new BasicNameValuePair("j_username", username),
                                            new BasicNameValuePair("j_password", password));
 
-        executeWithCookieStore(request);
+        execute(request);
     }
 
     public void logout() throws ClientProtocolException, IOException {
         LOGGER.debug("logout");
-        executeWithCookieStore(Request.Get(LOGOUT_URL));
+        execute(Request.Get(LOGOUT_URL));
     }
 
     public void populateDb() throws ClientProtocolException, IOException {
         LOGGER.debug("populateDb");
-        executor.execute(Request.Get(POPULATE_DB)).discardContent();
+        execute(Request.Get(POPULATE_DB));
     }
 
-    private void executeWithCookieStore(Request request) throws ClientProtocolException, IOException {
+    private void execute(Request request) throws ClientProtocolException, IOException {
+        request.addHeader("Connection", "close");
         executor.execute(request).discardContent();
     }
 

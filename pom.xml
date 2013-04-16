@@ -13,6 +13,7 @@
         <module>crud-common</module>
         <module>auth-service</module>
         <module>had_one_dismissal</module>
+        <module>sca-test-harness</module>
     </modules>
 
     <scm>
