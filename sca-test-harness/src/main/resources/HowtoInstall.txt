@@ -12,3 +12,5 @@ sudo chown -R tomcat7 /opt/appdynamics
 sudo chgrp -R tomcat7 /opt/appdynamics
 sudo mkdir /usr/share/tomcat7/shared
 sudo chown tomcat7:tomcat7 /usr/share/tomcat7/shared
+echo "CREATE USER had_one_dismissal WITH PASSWORD 'lei0Ie0d';" | sudo -u postgres psql 
+echo "CREATE DATABASE had_one_dismissal OWNER had_one_dismissal" | sudo -u postgres psql
