@@ -1,0 +1,14 @@
+#Follow with tomcat7
+#http://blog.tartachuc.org/2012/01/18/plusieurs-instances-de-tomcat-sur-ubuntu/
+sudo tomcat7-instance-create -p 9876 -c 8007 tomcat7-auth
+sudo tomcat7-instance-create -p 8080 -c 8006 tomcat7-had_one_dismissal
+#Modify setenv.sh
+#Add /usr/lib/jvm/java-7-openjdk-amd64 to JDK_DIRS
+#For tomcat7-auth
+#CATALINA_OPTS="$CATALINA_OPTS -javaagent:/opt/appdynamics/AppServerAgent1/javaagent.jar=uniqueID=sca1 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1100 -Dcom.sun.management.jmxremote.ssl=false  -Dcom.sun.management.jmxremote.authenticate=false"
+#for tomcat7-had_one_dismissal
+#CATALINA_OPTS="$CATALINA_OPTS -javaagent:/opt/appdynamics/AppServerAgent2/javaagent.jar=uniqueID=sca2 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false  -Dcom.sun.management.jmxremote.authenticate=false"
+sudo chown -R tomcat7 /opt/appdynamics
+sudo chgrp -R tomcat7 /opt/appdynamics
+sudo mkdir /usr/share/tomcat7/shared
+sudo chown tomcat7:tomcat7 /usr/share/tomcat7/shared
