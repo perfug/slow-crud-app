@@ -14,3 +14,21 @@ sudo mkdir /usr/share/tomcat7/shared
 sudo chown tomcat7:tomcat7 /usr/share/tomcat7/shared
 echo "CREATE USER had_one_dismissal WITH PASSWORD 'lei0Ie0d';" | sudo -u postgres psql 
 echo "CREATE DATABASE had_one_dismissal OWNER had_one_dismissal" | sudo -u postgres psql
+sudo useradd -d /home/perfug -g perfug perfug
+sudo passwd perfug
+perfug
+perfug
+sudo usermod -a -G sudo perfug
+#/etc/ssh/sshd_config  set PasswordAuthentication to yes.
+/etc/init.d/sshd reload
+#Load as perfug
+ln -s /home/ubuntu/slow-crud-app slow-crud-app
+ln -s slow-crud-app/sca-test-harness/src/main/resources/runCpuLoad.sh runCpuLoad.sh
+ln -s slow-crud-app/sca-test-harness/src/main/resources/runInterprocessContextSwitching.sh runInterprocessContextSwitching.sh
+ln -s slow-crud-app/sca-test-harness/src/main/resources/runDeadlock.sh runDeadlock.sh
+ln -s slow-crud-app/sca-test-harness/src/main/resources/runLoggingLoad.sh runLoggingLoad.sh
+ln -s slow-crud-app/sca-test-harness/src/main/resources/runExternalWebApp.sh runExternalWebApp.sh
+ln -s slow-crud-app/sca-test-harness/src/main/resources/runSingleThreaded.sh runSingleThreaded.sh
+
+     
+  
