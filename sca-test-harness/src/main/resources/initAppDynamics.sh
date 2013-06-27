@@ -9,10 +9,10 @@ rm -Rf /opt/appdynamics/AppServerAgent2/logs/*
 rm -Rf /opt/appdynamics/MachineAgent/logs/*
 
 sed -i -e "s/<application-name>.*<\/application-name>/<application-name>slow-crud-app_`hostname`<\/application-name>/" /opt/appdynamics/AppServerAgent1/conf/controller-info.xml
-sed -i -e "s/<node-name>.*<\/node-name>/<node-name>`hostname`<\/node-name>/" /opt/appdynamics/AppServerAgent1/conf/controller-info.xml
+sed -i -e "s/<node-name>.*<\/node-name>/<node-name>`hostname`:9876<\/node-name>/" /opt/appdynamics/AppServerAgent1/conf/controller-info.xml
 
 sed -i -e "s/<application-name>.*<\/application-name>/<application-name>slow-crud-app_`hostname`<\/application-name>/" /opt/appdynamics/AppServerAgent2/conf/controller-info.xml
-sed -i -e "s/<node-name>.*<\/node-name>/<node-name>`hostname`<\/node-name>/" /opt/appdynamics/AppServerAgent2/conf/controller-info.xml
+sed -i -e "s/<node-name>.*<\/node-name>/<node-name>`hostname`:8080<\/node-name>/" /opt/appdynamics/AppServerAgent2/conf/controller-info.xml
 
 sed -i -e "s/<application-name>.*<\/application-name>/<application-name>slow-crud-app_`hostname`<\/application-name>/" /opt/appdynamics/MachineAgent/conf/controller-info.xml
 sed -i -e "s/<node-name>.*<\/node-name>/<node-name>`hostname`<\/node-name>/" /opt/appdynamics/MachineAgent/conf/controller-info.xml
