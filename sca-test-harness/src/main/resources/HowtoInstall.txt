@@ -29,6 +29,7 @@ ln -s slow-crud-app/sca-test-harness/src/main/resources/runDeadlock.sh runDeadlo
 ln -s slow-crud-app/sca-test-harness/src/main/resources/runLoggingLoad.sh runLoggingLoad.sh
 ln -s slow-crud-app/sca-test-harness/src/main/resources/runExternalWebApp.sh runExternalWebApp.sh
 ln -s slow-crud-app/sca-test-harness/src/main/resources/runSingleThreaded.sh runSingleThreaded.sh
-
+usermod -s /bin/bash perfug
+#/etc/default/tomcat7 #Virer le Xmx
      
   
